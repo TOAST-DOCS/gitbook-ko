@@ -1,9 +1,12 @@
-## Game > Gamebase > iOS SDK 사용 가이드 > ETC
+# 참고 사항
 
-## Additional Features
+### Game > Gamebase > iOS SDK 사용 가이드 > ETC
+
+### Additional Features
+
 Gamebase에서 지원하는 부가적인 기능을 설명합니다.
 
-### IDFA
+#### IDFA
 
 * 단말기의 광고식별자 값을 반환합니다.
 
@@ -13,16 +16,12 @@ Gamebase에서 지원하는 부가적인 기능을 설명합니다.
 + (NSString *)idfa;
 ```
 
-> <font color="red">[주의]</font><br/>
+> \[주의]\
 >
-> iOS 14 이상부터 IDFA 값 요청 시, 사용자 권한을 받아야합니다.
-> 사용자 권한 요청할 때 노출시킬 문구를 info.plist에 설정을 해야 합니다.
-> info.plist에 'Privacy - Tracking Usage Description'을 설정하십시오.
+>
+> iOS 14 이상부터 IDFA 값 요청 시, 사용자 권한을 받아야합니다. 사용자 권한 요청할 때 노출시킬 문구를 info.plist에 설정을 해야 합니다. info.plist에 'Privacy - Tracking Usage Description'을 설정하십시오.
 
-
-
-
-### Device Language
+#### Device Language
 
 * 단말기에 설정된 언어 코드를 반환합니다.
 * 여러개의 언어가 등록된 경우, 우선권이 가장 높은 언어만을 반환합니다.
@@ -33,56 +32,51 @@ Gamebase에서 지원하는 부가적인 기능을 설명합니다.
 + (NSString *)deviceLanguageCode;
 ```
 
-
-### Display Language
+#### Display Language
 
 점검 팝업 창과 같이 Gamebase가 표시하는 언어는 단말기에 설정된 언어로 표시됩니다.
 
-그런데 게임에서 표시하는 언어를 단말기에 설정된 언어가 아닌, 별도의 옵션으로 언어를 변경할 수 있는 게임이 있습니다.
-예를 들어, 단말기에 설정된 언어는 영어 이지만 게임 표시 언어를 일본어로 변경한 경우, Gamebase에서 표시하는 언어도 일본어로 변경하고 싶지만 Gamebase가 표시하는 언어는 단말기에 설정된 언어인 영어로 표시됩니다.
+그런데 게임에서 표시하는 언어를 단말기에 설정된 언어가 아닌, 별도의 옵션으로 언어를 변경할 수 있는 게임이 있습니다. 예를 들어, 단말기에 설정된 언어는 영어 이지만 게임 표시 언어를 일본어로 변경한 경우, Gamebase에서 표시하는 언어도 일본어로 변경하고 싶지만 Gamebase가 표시하는 언어는 단말기에 설정된 언어인 영어로 표시됩니다.
 
 이와 같이 `단말기에 설정된 언어가 아닌, 다른 언어로 Gamebase 메시지를 표시하고 싶은` 애플리케이션을 위해 Gamebase 는 `Display Language` 라는 기능을 제공합니다.
 
-Gamebase는 Display Language로 설정한 언어로 Gamebase 메시지를 표시합니다.
-Display Language에 입력하는 언어 코드는 반드시 아래의 표(**Gamebase에서 지원하는 언어코드의 종류**)에 지정된 코드만을 사용할 수 있습니다.
+Gamebase는 Display Language로 설정한 언어로 Gamebase 메시지를 표시합니다. Display Language에 입력하는 언어 코드는 반드시 아래의 표(**Gamebase에서 지원하는 언어코드의 종류**)에 지정된 코드만을 사용할 수 있습니다.
 
-> <font color="red">[주의]</font><br/>
+> \[주의]\
+>
 >
 > * Display Language는 단말기 설정 언어와 무관하게 Gamebase의 표시 언어를 변경하고 싶은 경우에만 사용하시기 바랍니다.
-> * Display Language Code는 ISO-639 형태의 값으로, 대소문자를 구분합니다.
-> 'EN'이나 'zh-cn'과 같이 설정하면 문제가 발생할 수 있습니다.
+> * Display Language Code는 ISO-639 형태의 값으로, 대소문자를 구분합니다. 'EN'이나 'zh-cn'과 같이 설정하면 문제가 발생할 수 있습니다.
 > * 만일 Display Language Code로 입력한 값이 아래의 표(**Gamebase에서 지원하는 언어코드의 종류**)에 존재하지 않는다면, Display Langauge Code는 Gamebase 콘솔에서 설정한 기본 언어로 지정됩니다.
 >   * 만일 Gamebase 콘솔에서 언어 설정을 하지 않았다면 영어(en)가 기본 언어로 설정됩니다.
 
-> [참고]
+> \[참고]
 >
 > * Gamebase의 클라이언트 메시지는 영어(en), 한글(ko), 일본어(ja)만 포함하고 있으므로 아래의 표에 존재하는 언어 코드라 할지라도 영어(en), 한글(ko), 일본어(ja) 이외의 언어를 지정하면 기본값인 영어(en)로 자동 설정됩니다.
-> * Gamebase의 클라이언트에 포함되어 있지 않은 언어셋은 직접 추가할 수 있습니다.
-> **신규 언어셋 추가** 항목을 참조하시기 바랍니다.
+> * Gamebase의 클라이언트에 포함되어 있지 않은 언어셋은 직접 추가할 수 있습니다. **신규 언어셋 추가** 항목을 참조하시기 바랍니다.
 
+**Gamebase에서 지원하고 있는 언어코드의 종류**
 
-#### Gamebase에서 지원하고 있는 언어코드의 종류
-| Code | Name |
-| --- | --- |
-| de | German |
-| en |English  |
-| es | Spanish |
-| fi | Finnish |
-| fr | French |
-| id | Indonesian |
-| it | Italian |
-| ja | Japanese |
-| ko | Korean |
-| pt | Portuguese |
-| ru | Russian |
-| th | Thai |
-| vi | Vietnamese |
-| ms | Malay | 
-| zh-CN | Chinese-Simplified |
+| Code  | Name                |
+| ----- | ------------------- |
+| de    | German              |
+| en    | English             |
+| es    | Spanish             |
+| fi    | Finnish             |
+| fr    | French              |
+| id    | Indonesian          |
+| it    | Italian             |
+| ja    | Japanese            |
+| ko    | Korean              |
+| pt    | Portuguese          |
+| ru    | Russian             |
+| th    | Thai                |
+| vi    | Vietnamese          |
+| ms    | Malay               |
+| zh-CN | Chinese-Simplified  |
 | zh-TW | Chinese-Traditional |
 
 해당 언어코드는 `TCGBConstants.h`에 정의되어 있습니다.
-
 
 ```objectivec
 #pragma mark - DisplayLanguageCode
@@ -104,8 +98,7 @@ extern NSString* const kTCGBDisplayLanguageCodeChineseSimplified;
 extern NSString* const kTCGBDisplayLanguageCodeChineseTraditional;
 ```
 
-
-#### Gamebase 초기화 시 Display Language 설정
+**Gamebase 초기화 시 Display Language 설정**
 
 Gamebase 초기화 시 Display Language를 설정할 수 있습니다.
 
@@ -135,7 +128,7 @@ Gamebase 초기화 시 Display Language를 설정할 수 있습니다.
     }
 ```
 
-#### Set Display Language
+**Set Display Language**
 
 Gamebase 초기화 시 입력된 Display Language를 변경할 수 있습니다.
 
@@ -153,7 +146,7 @@ Gamebase 초기화 시 입력된 Display Language를 변경할 수 있습니다.
 }
 ```
 
-#### Get Display Language
+**Get Display Language**
 
 현재 적용된 Display Language를 조회할 수 있습니다.
 
@@ -172,7 +165,7 @@ Gamebase 초기화 시 입력된 Display Language를 변경할 수 있습니다.
 }
 ```
 
-#### 신규 언어셋 추가
+**신규 언어셋 추가**
 
 Gamebase에서 제공하는 기본 언어(ko, en, ja, zh-CN, zh-TW, th) 외 다른 언어를 사용하는 경우에는 Xcode 프로젝트의 `Copy Bundle Resources`에 **localizedstring.json** 파일을 추가하면 됩니다.
 
@@ -244,7 +237,7 @@ localizedstring.json에 정의되어 있는 형식은 아래와 같습니다.
 }
 ```
 
-#### Display Language 우선 순위
+**Display Language 우선 순위**
 
 초기화 및 setDisplayLanguageCode: API를 통해 Display Language를 설정할 경우, 최종 적용되는 Display Language는 입력한 값과 다르게 적용될 수 있습니다.
 
@@ -253,11 +246,11 @@ localizedstring.json에 정의되어 있는 형식은 아래와 같습니다.
 3. 2번이 실패했다면 Gamebase 콘솔에 설정된 기본 언어가 설정됩니다.
 4. Gamebase 콘솔에 언어 설정이 없다면 `en`이 기본값으로 설정됩니다.
 
-### Country Code
+#### Country Code
 
 * Gamebase는 System의 Country Code를 다음 API로 제공하고 있습니다.
 
-#### Device Country Code
+**Device Country Code**
 
 * OS로부터 전달받은 단말기 지역 설정을 추가적인 체크 없이 그대로 반환합니다.
 * 단말기 국가코드는 '설정 > 일반 > 언어 및 지역 > 지역' 설정에 따라 OS가 결정합니다.
@@ -269,13 +262,12 @@ localizedstring.json에 정의되어 있는 형식은 아래와 같습니다.
 + (NSString *)deviceCountryCode;
 ```
 
-### Gamebase Event Handler
+#### Gamebase Event Handler
 
 * Gamebase는 각종 이벤트를 **GamebaseEventHandler**라는 하나의 이벤트 시스템에서 모두 처리할 수 있습니다.
 * GamebaseEventHandler는 아래 API를 통해 간단하게 Handler를 추가/제거할 수 있습니다.
 
 **API**
-
 
 ```objectivec
 + (void)addEventHandler:(GamebaseEventHandler)handler;
@@ -341,35 +333,35 @@ localizedstring.json에 정의되어 있는 형식은 아래와 같습니다.
 * Category는 GamebaseEventCategory 클래스에 정의되어 있습니다.
 * 이벤트는 크게 IdPRevoked, LoggedOut, ServerPush, Observer, Purchase, Push로 나뉘며, 각 Category에 따라 아래 표와 같은 방법으로 TCGBGamebaseEventMessage.data를 VO로 변환할 수 있습니다.
 
-| Event 종류 | GamebaseEventCategory | VO 변환 방법 | 비고 |
-| --------- | --------------------- | ----------- | --- |
-| IdPRevoked | kTCGBIdPRevoked | [TCGBGamebaseEventIdPRevokedData gamebaseEventIdPRevokedDataFromJsonString:message.data] | \- |
-| LoggedOut | kTCGBLoggedOut | [TCGBGamebaseEventLoggedOutData gamebaseEventLoggedOutDataFromJsonString:message.data] | \- |
-| ServerPush | kTCGBServerPushAppKickoutMessageReceived<br>kTCGBServerPushAppKickout<br>kTCGBServerPushTransferKickout | [TCGBGamebaseEventServerPushData gamebaseEventServerPushDataFromJsonString:message.data] | \- |
-| Observer | kTCGBObserverLaunching<br>kTCGBObserverHeartbeat<br>kTCGBObserverNetwork | [TCGBGamebaseEventObserverData gamebaseEventObserverDataFromJsonString:message.data] | \- |
-| Purchase - 프로모션 결제 | kTCGBPurchaseUpdated | [TCGBPurchasableReceipt purchasableReceiptFromJsonString:message.data] | \- |
-| Push - 메시지 수신 | kTCGBPushReceivedMessage | [TCGBPushMessage pushMessageFromJsonString:message.data] | \- |
-| Push - 메시지 클릭 | kTCGBPushClickMessage | [TCGBPushMessage pushFromJsonString:message.data] | \- |
-| Push - 액션 클릭 | kTCGBPushClickAction | [TCGBPushMessage pushFromJsonString:message.data] | RichMessage 버튼 클릭 시 동작합니다. |
+| Event 종류           | GamebaseEventCategory                                                                                          | VO 변환 방법                                                                                  | 비고                         |
+| ------------------ | -------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- | -------------------------- |
+| IdPRevoked         | kTCGBIdPRevoked                                                                                                | \[TCGBGamebaseEventIdPRevokedData gamebaseEventIdPRevokedDataFromJsonString:message.data] | -                          |
+| LoggedOut          | kTCGBLoggedOut                                                                                                 | \[TCGBGamebaseEventLoggedOutData gamebaseEventLoggedOutDataFromJsonString:message.data]   | -                          |
+| ServerPush         | <p>kTCGBServerPushAppKickoutMessageReceived<br>kTCGBServerPushAppKickout<br>kTCGBServerPushTransferKickout</p> | \[TCGBGamebaseEventServerPushData gamebaseEventServerPushDataFromJsonString:message.data] | -                          |
+| Observer           | <p>kTCGBObserverLaunching<br>kTCGBObserverHeartbeat<br>kTCGBObserverNetwork</p>                                | \[TCGBGamebaseEventObserverData gamebaseEventObserverDataFromJsonString:message.data]     | -                          |
+| Purchase - 프로모션 결제 | kTCGBPurchaseUpdated                                                                                           | \[TCGBPurchasableReceipt purchasableReceiptFromJsonString:message.data]                   | -                          |
+| Push - 메시지 수신      | kTCGBPushReceivedMessage                                                                                       | \[TCGBPushMessage pushMessageFromJsonString:message.data]                                 | -                          |
+| Push - 메시지 클릭      | kTCGBPushClickMessage                                                                                          | \[TCGBPushMessage pushFromJsonString:message.data]                                        | -                          |
+| Push - 액션 클릭       | kTCGBPushClickAction                                                                                           | \[TCGBPushMessage pushFromJsonString:message.data]                                        | RichMessage 버튼 클릭 시 동작합니다. |
 
-#### IdP Revoked
+**IdP Revoked**
 
-> [참고]
+> \[참고]
 >
 > iOS Appleid 로그인을 사용하는 경우에만 발생할 수 있는 이벤트입니다.
 
 * IdP에서 해당 서비스를 삭제하였을 때 발생하는 이벤트입니다.
 * 유저에게 IdP가 사용 중지된 것을 알리고, 동일한 IdP로 로그인할 때 userID를 새로 발급 받을 수 있도록 구현해야 합니다.
 * TCGBGamebaseEventIdPRevokedData.code: TCGBIdPRevokedCode 값을 의미합니다.
-    * IDP_REVOKED_WITHDRAW: 600
-        * 현재 사용 중지된 IdP로 로그인되어 있고, 매핑된 IdP 목록이 없을 때를 의미합니다.
-        * withdraw API를 호출하여 현재 계정을 탈퇴 처리해야 합니다.
-    * IDP_REVOKED_OVERWRITE_LOGIN_AND_REMOVE_MAPPING: 601
-        * 현재 사용 중지된 IdP로 로그인되어 있고, 사용 중지된 IdP 외에 다른 IdP가 매핑되어 있는 경우를 의미합니다.
-        * 매핑된 IdP 중 하나의 IdP로 로그인을 하고 removeMapping API를 호출하여 사용 중지된 IdP에 대해 연동을 해제해야 합니다.
-    * IDP_REVOKED_REMOVE_MAPPING: 602
-        * 현재 계정에 매핑된 IdP 중 사용 중지된 IdP가 있을 경우를 의미합니다.
-        * removeMapping API를 호출하여 사용 중지된 IdP에 대해 연동을 해제해야 합니다.
+  * IDP\_REVOKED\_WITHDRAW: 600
+    * 현재 사용 중지된 IdP로 로그인되어 있고, 매핑된 IdP 목록이 없을 때를 의미합니다.
+    * withdraw API를 호출하여 현재 계정을 탈퇴 처리해야 합니다.
+  * IDP\_REVOKED\_OVERWRITE\_LOGIN\_AND\_REMOVE\_MAPPING: 601
+    * 현재 사용 중지된 IdP로 로그인되어 있고, 사용 중지된 IdP 외에 다른 IdP가 매핑되어 있는 경우를 의미합니다.
+    * 매핑된 IdP 중 하나의 IdP로 로그인을 하고 removeMapping API를 호출하여 사용 중지된 IdP에 대해 연동을 해제해야 합니다.
+  * IDP\_REVOKED\_REMOVE\_MAPPING: 602
+    * 현재 계정에 매핑된 IdP 중 사용 중지된 IdP가 있을 경우를 의미합니다.
+    * removeMapping API를 호출하여 사용 중지된 IdP에 대해 연동을 해제해야 합니다.
 * TCGBGamebaseEventIdPRevokedData.idpType: 사용 중지된 IdP 타입을 의미합니다.
 * TCGBGamebaseEventIdPRevokedData.authMappingList: 현재 계정에 매핑되어 있는 IdP 목록을 의미합니다.
 
@@ -437,7 +429,7 @@ localizedstring.json에 정의되어 있는 형식은 아래와 같습니다.
 }
 ```
 
-#### Logged Out
+**Logged Out**
 
 * Gamebase Access Token이 만료되어 네트워크 세션을 복구하기 위해 로그인 함수 호출이 필요한 경우 발생하는 이벤트입니다.
 
@@ -459,19 +451,19 @@ localizedstring.json에 정의되어 있는 형식은 아래와 같습니다.
 }
 ```
 
-#### Server Push
+**Server Push**
 
 * Gamebase 서버에서 클라이언트 단말기로 보내는 메시지입니다.
 * Gamebase에서 지원하는 Server Push Type은 다음과 같습니다.
-	* kTCGBServerPushAppKickoutMessageReceived
-    	* NHN Cloud Gamebase 콘솔의 **Operation > Kickout**에서 킥아웃 ServerPush 메시지를 등록하면 Gamebase와 연결된 모든 클라이언트에서 킥아웃 메시지를 받게 됩니다.
-        * 클라이언트 단말기에서 서버 메시지를 수신한 직후에 발생하는 이벤트입니다.
-        * '오토 플레이'와 같이 게임이 동작 중인 경우, 게임을 일시 정지시키는 목적으로 활용할 수 있습니다.
-	* kTCGBServerPushAppKickout
-    	* NHN Cloud Gamebase 콘솔의 **Operation > Kickout**에서 킥아웃 ServerPush 메시지를 등록하면 Gamebase와 연결된 모든 클라이언트에서 킥아웃 메시지를 받게 됩니다.
-        * 클라이언트 단말기에서 서버 메시지를 수신했을 때 팝업 창을 표시하는데, 유저가 이 팝업 창을 닫았을 때 발생하는 이벤트입니다.
-    * kTCGBServerPushTransferKickout
-    	* Guest 계정을 다른 단말기로 이전을 성공하게 되면 이전 단말기에서 킥아웃 메시지를 받게 됩니다.
+  * kTCGBServerPushAppKickoutMessageReceived
+    * NHN Cloud Gamebase 콘솔의 **Operation > Kickout**에서 킥아웃 ServerPush 메시지를 등록하면 Gamebase와 연결된 모든 클라이언트에서 킥아웃 메시지를 받게 됩니다.
+    * 클라이언트 단말기에서 서버 메시지를 수신한 직후에 발생하는 이벤트입니다.
+    * '오토 플레이'와 같이 게임이 동작 중인 경우, 게임을 일시 정지시키는 목적으로 활용할 수 있습니다.
+  * kTCGBServerPushAppKickout
+    * NHN Cloud Gamebase 콘솔의 **Operation > Kickout**에서 킥아웃 ServerPush 메시지를 등록하면 Gamebase와 연결된 모든 클라이언트에서 킥아웃 메시지를 받게 됩니다.
+    * 클라이언트 단말기에서 서버 메시지를 수신했을 때 팝업 창을 표시하는데, 유저가 이 팝업 창을 닫았을 때 발생하는 이벤트입니다.
+  * kTCGBServerPushTransferKickout
+    * Guest 계정을 다른 단말기로 이전을 성공하게 되면 이전 단말기에서 킥아웃 메시지를 받게 됩니다.
 
 **Example**
 
@@ -501,35 +493,35 @@ localizedstring.json에 정의되어 있는 형식은 아래와 같습니다.
 }
 ```
 
-#### Observer
+**Observer**
 
 * Gamebase의 각종 상태 변동 이벤트를 처리하는 시스템입니다.
 * Gamebase에서 지원하는 Observer Type은 다음과 같습니다.
-    * kTCGBObserverLaunching
-    	* 점검이 걸리거나 풀린 경우, 새로운 버전이 배포되어 업데이트가 필요한 경우와 같이, Launching 상태가 변경되었을 때 동작합니다.
-    	* TCGBGamebaseEventObserverData.code: TCGBLaunchingStatus 값을 의미합니다.
-            * IN_SERVICE: 200
-            * RECOMMEND_UPDATE: 201
-            * IN_SERVICE_BY_QA_WHITE_LIST: 202
-            * REQUIRE_UPDATE: 300
-            * BLOCKED_USER: 301
-            * TERMINATED_SERVICE: 302
-            * INSPECTING_SERVICE: 303
-            * INSPECTING_ALL_SERVICES: 304
-            * INTERNAL_SERVER_ERROR: 500
-    * kTCGBObserverHeartbeat
-    	* 탈퇴 처리 되거나 이용 정지로 인하여 사용자 계정 상태가 변했을 때 동작합니다.
-    	* TCGBGamebaseEventObserverData.code: TCGBError 값을 의미합니다.
-            * TCGB_ERROR_INVALID_MEMBER: 6
-            * TCGB_ERROR_BANNED_MEMBER: 7
-    * kTCGBObserverNetwork
-    	* 네트워크 변동 사항 정보를 받을 수 있습니다.
-    	* 네트워크가 끊기거나 연결되었을 때, 혹은 Wifi 에서 셀룰러 네트워크로 변경되었을 때 동작합니다.
-    	* TCGBGamebaseEventObserverData.code: NetworkManager 값을 의미합니다.
-            * ReachabilityIsNotDefined = -100
-            * NotReachable = -1
-            * ReachableViaWWAN = 0
-            * ReachableViaWifi = 1
+  * kTCGBObserverLaunching
+    * 점검이 걸리거나 풀린 경우, 새로운 버전이 배포되어 업데이트가 필요한 경우와 같이, Launching 상태가 변경되었을 때 동작합니다.
+    * TCGBGamebaseEventObserverData.code: TCGBLaunchingStatus 값을 의미합니다.
+      * IN\_SERVICE: 200
+      * RECOMMEND\_UPDATE: 201
+      * IN\_SERVICE\_BY\_QA\_WHITE\_LIST: 202
+      * REQUIRE\_UPDATE: 300
+      * BLOCKED\_USER: 301
+      * TERMINATED\_SERVICE: 302
+      * INSPECTING\_SERVICE: 303
+      * INSPECTING\_ALL\_SERVICES: 304
+      * INTERNAL\_SERVER\_ERROR: 500
+  * kTCGBObserverHeartbeat
+    * 탈퇴 처리 되거나 이용 정지로 인하여 사용자 계정 상태가 변했을 때 동작합니다.
+    * TCGBGamebaseEventObserverData.code: TCGBError 값을 의미합니다.
+      * TCGB\_ERROR\_INVALID\_MEMBER: 6
+      * TCGB\_ERROR\_BANNED\_MEMBER: 7
+  * kTCGBObserverNetwork
+    * 네트워크 변동 사항 정보를 받을 수 있습니다.
+    * 네트워크가 끊기거나 연결되었을 때, 혹은 Wifi 에서 셀룰러 네트워크로 변경되었을 때 동작합니다.
+    * TCGBGamebaseEventObserverData.code: NetworkManager 값을 의미합니다.
+      * ReachabilityIsNotDefined = -100
+      * NotReachable = -1
+      * ReachableViaWWAN = 0
+      * ReachableViaWifi = 1
 
 **VO**
 
@@ -594,8 +586,7 @@ localizedstring.json에 정의되어 있는 형식은 아래와 같습니다.
 }
 ```
 
-
-#### Purchase Updated
+**Purchase Updated**
 
 * Promotion 코드 입력을 통해 상품을 획득한 경우 발생하는 이벤트입니다.
 * 결제 영수증 정보를 획득할 수 있습니다.
@@ -616,8 +607,7 @@ localizedstring.json에 정의되어 있는 형식은 아래와 같습니다.
 }
 ```
 
-#### Push Received Message
-
+**Push Received Message**
 
 * Push 메시지가 도착했을때 발생하는 이벤트입니다.
 * extras 필드를 JSON으로 변환하여, Push 발송 시 전송했던 커스텀 정보를 얻을 수도 있습니다.
@@ -652,7 +642,7 @@ localizedstring.json에 정의되어 있는 형식은 아래와 같습니다.
 }
 ```
 
-#### Push Click Message
+**Push Click Message**
 
 * 수신한 Push 메시지를 클릭했을때 발생하는 이벤트입니다.
 
@@ -673,14 +663,14 @@ localizedstring.json에 정의되어 있는 형식은 아래와 같습니다.
 }
 ```
 
-#### Push Click Action
+**Push Click Action**
 
 * Rich Message 기능을 통해 생성한 버튼을 클릭했을 때 발생하는 이벤트입니다.
 * actionType은 다음 항목이 제공됩니다.
-	* "OPEN_APP"
-	* "OPEN_URL"
-	* "REPLY"
-	* "DISMISS"
+  * "OPEN\_APP"
+  * "OPEN\_URL"
+  * "REPLY"
+  * "DISMISS"
 
 **VO**
 
@@ -711,44 +701,42 @@ localizedstring.json에 정의되어 있는 형식은 아래와 같습니다.
 }
 ```
 
-
- 
-### Analytics
+#### Analytics
 
 Game지표를 Gamebase Server로 전송할 수 있습니다.
 
-> <font color="red">[주의]</font><br/>
+> \[주의]\
+>
 >
 > Gamebase Analytics에서 지원하는 모든 API는 로그인 후에 호출할 수 있습니다.
 
-> [TIP]
+> \[TIP]
 >
 > TCGBPurchase의 requestPurchaseWithItemSeq:viewController:completion API의 호출을 통한 결제 또는 setPromotionIAPHandler를 통한 프로모션 결제를 완료하면 자동으로 지표를 전송합니다.
 
 Analytics Console 사용법은 아래 가이드를 참고하십시오.
 
-- [Analytics Console](./oper-analytics)
+* [Analytics Console](oper-analytics/)
 
-#### Game User Data Settings
+**Game User Data Settings**
 
 게임 로그인 이후 게임 유저 레벨 정보를 지표로 전송할 수 있습니다.
 
-> <font color="red">[주의]</font><br/>
+> \[주의]\
+>
 >
 > 게임 로그인 이후 SetGameUserData API를 호출하지 않으면 다른 지표에서 Level 정보가 누락될 수 있습니다.
->
 
 API 호출에 필요한 파라미터는 아래와 같습니다.
 
 **GameUserData**
 
-| Name | Mandatory(M) / Optional(O) | type | Desc |
-| -------------------------- | -------------------------- | ---- | ---- |
-| userLevel | M | int | 게임 유저 레벨을 나타내는 필드입니다. |
-| channelId | O | String | 채널을 나타내는 필드입니다. |
-| characterId | O | String | 캐릭터 이름을 나타내는 필드입니다. |
-| classId | O | String | 직업을 나타내는 필드입니다. |
-
+| Name        | Mandatory(M) / Optional(O) | type   | Desc                  |
+| ----------- | -------------------------- | ------ | --------------------- |
+| userLevel   | M                          | int    | 게임 유저 레벨을 나타내는 필드입니다. |
+| channelId   | O                          | String | 채널을 나타내는 필드입니다.       |
+| characterId | O                          | String | 캐릭터 이름을 나타내는 필드입니다.   |
+| classId     | O                          | String | 직업을 나타내는 필드입니다.       |
 
 **API**
 
@@ -767,7 +755,7 @@ API 호출에 필요한 파라미터는 아래와 같습니다.
 }
 ```
 
-#### Level Up Trace
+**Level Up Trace**
 
 레벨업이 되었을 경우 게임 유저 레벨 정보를 지표로 전송할 수 있습니다.
 
@@ -775,10 +763,10 @@ API 호출에 필요한 파라미터는 아래와 같습니다.
 
 **LevelUpData**
 
-| Name | Mandatory (M) / Optional (O) | type | Desc |
-| -------------------------- | -------------------------- | ---- | ---- |
-| userLevel | M | int | 게임 유저 레벨을 나타내는 필드입니다. |
-| levelUpTime | M | long | Epoch time으로 입력합니다.</br>밀리초(ms) 단위로 입력합니다. |
+| Name        | Mandatory (M) / Optional (O) | type | Desc                                             |
+| ----------- | ---------------------------- | ---- | ------------------------------------------------ |
+| userLevel   | M                            | int  | 게임 유저 레벨을 나타내는 필드입니다.                            |
+| levelUpTime | M                            | long | <p>Epoch time으로 입력합니다.<br>밀리초(ms) 단위로 입력합니다.</p> |
 
 **API**
 
@@ -795,54 +783,47 @@ API 호출에 필요한 파라미터는 아래와 같습니다.
 }
 ```
 
-### Contact
+#### Contact
 
 Gamebase에서는 고객 문의 대응을 위한 기능을 제공합니다.
 
-> [TIP]
+> \[TIP]
 >
-> NHN Cloud Contact 서비스와 연동해서 사용하면 보다 쉽고 편리하게 고객 문의에 대응할 수 있습니다.
-> 자세한 NHN Cloud Contact 서비스 이용법은 아래 가이드를 참고하시기 바랍니다.
-> [NHN Cloud Online Contact Guide](https://docs.nhncloud.com/ko/Contact%20Center/ko/online-contact-overview/)
->
+> NHN Cloud Contact 서비스와 연동해서 사용하면 보다 쉽고 편리하게 고객 문의에 대응할 수 있습니다. 자세한 NHN Cloud Contact 서비스 이용법은 아래 가이드를 참고하시기 바랍니다. [NHN Cloud Online Contact Guide](https://docs.nhncloud.com/ko/Contact%20Center/ko/online-contact-overview/)
 
-#### Customer Service Type
+**Customer Service Type**
 
-**Gamebase 콘솔 > App > InApp URL > Service center** 에서는 아래와 같이 3가지 유형의 고객 센터를 선택할 수 있습니다.
-![](https://static.toastoven.net/prod_gamebase/DevelopersGuide/etc_customer_center_001_2.16.0.png)
+**Gamebase 콘솔 > App > InApp URL > Service center** 에서는 아래와 같이 3가지 유형의 고객 센터를 선택할 수 있습니다. ![](https://static.toastoven.net/prod\_gamebase/DevelopersGuide/etc\_customer\_center\_001\_2.16.0.png)
 
 | Customer Service Type     | Required Login |
 | ------------------------- | -------------- |
 | Developer customer center | X              |
 | Gamebase customer center  | △              |
-| NHN Cloud Online Contact      | △              |
+| NHN Cloud Online Contact  | △              |
 
 각 유형에 따라 Gamebase SDK의 고객 센터 API는 다음 URL을 사용합니다.
 
 * 개발사 자체 고객 센터(Developer customer center)
-    * **고객 센터 URL**에 입력한 URL.
+  * **고객 센터 URL**에 입력한 URL.
 * Gamebase 제공 고객 센터(Gamebase customer center)
-    * 로그인 전: 유저 정보가 **없는** 고객 센터 URL.
-    * 로그인 후: 유저 정보가 포함된 고객 센터 URL.
+  * 로그인 전: 유저 정보가 **없는** 고객 센터 URL.
+  * 로그인 후: 유저 정보가 포함된 고객 센터 URL.
 * NHN Cloud 조직 상품(Online Contact)
-    * 로그인 전: 유저 정보가 **없는** 고객 센터 URL.
-    * 로그인 후: 유저 정보가 포함된 고객 센터 URL.
+  * 로그인 전: 유저 정보가 **없는** 고객 센터 URL.
+  * 로그인 후: 유저 정보가 포함된 고객 센터 URL.
 
-#### Open Contact WebView
+**Open Contact WebView**
 
-Gamebase 콘솔에 입력한 **고객 센터 URL** 웹뷰를 나타낼 수 있는 기능입니다.
-TCGBContactConfiguration으로 URL에 추가 정보를 전달할 수 있습니다.
-
+Gamebase 콘솔에 입력한 **고객 센터 URL** 웹뷰를 나타낼 수 있는 기능입니다. TCGBContactConfiguration으로 URL에 추가 정보를 전달할 수 있습니다.
 
 **TCGBContactConfiguration**
 
-| Parameter     | Mandatory(M) /<br/>Optional(O) | Values            | Description        |
-| ------------- | ------------- | ---------------------------------- | ------------------ |
-| userName      | O             | string                             | 사용자 이름(닉네임)<br>**default**: nil    |
-| additionalURL | O             | string                             | 개발사 자체 고객 센터 URL 뒤에 붙는 추가적인 URL<br>고객 센터 타입이 `CUSTOM` 인 경우에만 사용<br>**default**: nil    |
-| additionalParameters | O      | dictionary&lt;string, string&gt;         | 고객 센터 URL 뒤에 붙는 추가적인 파라미터<br>**default**: nil    |
-| extraData     | O             | dictionary&lt;string, string&gt;         | 개발사가 원하는 extra data를 고객 센터 오픈 시에 전달<br>**default**: nil    |
-
+| Parameter            | <p>Mandatory(M) /<br>Optional(O)</p> | Values                      | Description                                                                                                        |
+| -------------------- | ------------------------------------ | --------------------------- | ------------------------------------------------------------------------------------------------------------------ |
+| userName             | O                                    | string                      | <p>사용자 이름(닉네임)<br><strong>default</strong>: nil</p>                                                                |
+| additionalURL        | O                                    | string                      | <p>개발사 자체 고객 센터 URL 뒤에 붙는 추가적인 URL<br>고객 센터 타입이 <code>CUSTOM</code> 인 경우에만 사용<br><strong>default</strong>: nil</p> |
+| additionalParameters | O                                    | dictionary\<string, string> | <p>고객 센터 URL 뒤에 붙는 추가적인 파라미터<br><strong>default</strong>: nil</p>                                                  |
+| extraData            | O                                    | dictionary\<string, string> | <p>개발사가 원하는 extra data를 고객 센터 오픈 시에 전달<br><strong>default</strong>: nil</p>                                        |
 
 **API**
 
@@ -857,11 +838,11 @@ TCGBContactConfiguration으로 URL에 추가 정보를 전달할 수 있습니�
 
 **Error Code**
 
-| Error                           | Error Code | Description                 |
-| ------------------------------- | ---------- | --------------------------- |
-| TCGB\_ERROR\_NOT\_INITIALIZED | 1       | Gamebase가 초기화되어 있지 않습니다. |
-| TCGB\_ERROR\_UI\_CONTACT\_FAIL\_INVALID\_URL | 6911       | 고객 센터 URL이 존재하지 않습니다.<br>Gamebase 콘솔의 **고객 센터 URL**을 확인하세요. |
-| TCGB\_ERROR\_UI\_CONTACT\_FAIL\_ISSUE\_SHORT\_TERM\_TICKET | 6912       | 사용자 식별을 위한 임시 티켓 발급에 실패하였습니다. |
+| Error                                                      | Error Code | Description                                                                     |
+| ---------------------------------------------------------- | ---------- | ------------------------------------------------------------------------------- |
+| TCGB\_ERROR\_NOT\_INITIALIZED                              | 1          | Gamebase가 초기화되어 있지 않습니다.                                                        |
+| TCGB\_ERROR\_UI\_CONTACT\_FAIL\_INVALID\_URL               | 6911       | <p>고객 센터 URL이 존재하지 않습니다.<br>Gamebase 콘솔의 <strong>고객 센터 URL</strong>을 확인하세요.</p> |
+| TCGB\_ERROR\_UI\_CONTACT\_FAIL\_ISSUE\_SHORT\_TERM\_TICKET | 6912       | 사용자 식별을 위한 임시 티켓 발급에 실패하였습니다.                                                   |
 
 **Example**
 
@@ -878,12 +859,12 @@ TCGBContactConfiguration으로 URL에 추가 정보를 전달할 수 있습니�
 }];
 ```
 
-> <font color="red">[주의]</font><br/>
+> \[주의]\
 >
-> 고객 센터 문의 시 파일 첨부를 위해 카메라 또는 앨범 접근이 필요할 수 있습니다.
-> info.plist에 'Privacy - Camera Usage Description', 'Privacy - Photo Library Usage Description' 설정을 해 주시기 바랍니다.
+>
+> 고객 센터 문의 시 파일 첨부를 위해 카메라 또는 앨범 접근이 필요할 수 있습니다. info.plist에 'Privacy - Camera Usage Description', 'Privacy - Photo Library Usage Description' 설정을 해 주시기 바랍니다.
 
-#### Request Contact URL
+**Request Contact URL**
 
 고객 센터 웹뷰를 표시하는데 사용되는 URL을 얻을 수 있습니다.
 
@@ -898,11 +879,11 @@ TCGBContactConfiguration으로 URL에 추가 정보를 전달할 수 있습니�
 
 **Error Code**
 
-| Error                           | Error Code | Description                 |
-| ------------------------------- | ---------- | --------------------------- |
-| TCGB\_ERROR\_NOT\_INITIALIZED | 1       | Gamebase가 초기화되어 있지 않습니다. |
-| TCGB\_ERROR\_UI\_CONTACT\_FAIL\_INVALID\_URL | 6911       | 고객 센터 URL이 존재하지 않습니다.<br>Gamebase 콘솔의 **고객 센터 URL**을 확인하세요. |
-| TCGB\_ERROR\_UI\_CONTACT\_FAIL\_ISSUE\_SHORT\_TERM\_TICKET | 6912       | 사용자 식별을 위한 임시 티켓 발급에 실패하였습니다. |
+| Error                                                      | Error Code | Description                                                                     |
+| ---------------------------------------------------------- | ---------- | ------------------------------------------------------------------------------- |
+| TCGB\_ERROR\_NOT\_INITIALIZED                              | 1          | Gamebase가 초기화되어 있지 않습니다.                                                        |
+| TCGB\_ERROR\_UI\_CONTACT\_FAIL\_INVALID\_URL               | 6911       | <p>고객 센터 URL이 존재하지 않습니다.<br>Gamebase 콘솔의 <strong>고객 센터 URL</strong>을 확인하세요.</p> |
+| TCGB\_ERROR\_UI\_CONTACT\_FAIL\_ISSUE\_SHORT\_TERM\_TICKET | 6912       | 사용자 식별을 위한 임시 티켓 발급에 실패하였습니다.                                                   |
 
 **Example**
 
@@ -918,4 +899,3 @@ TCGBContactConfiguration으로 URL에 추가 정보를 전달할 수 있습니�
     }
 }];
 ```
-

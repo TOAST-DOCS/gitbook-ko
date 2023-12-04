@@ -1,6 +1,8 @@
-## Game > GameAnvil > Unity 심화 개발 가이드 > ConnectionAgent
+# ConnectionAgent
 
-## ConnectionAgent
+### Game > GameAnvil > Unity 심화 개발 가이드 > ConnectionAgent
+
+### ConnectionAgent
 
 ConnectionAgent는 GameAnvil 서버의 커넥션 노드와 관련된 작업을 담당합니다. 접속(Connect()), 인증(Authentication()) 등 기본 세션 관리 기능 및 채널 목록 등을 제공하며, 직접 정의한 프로토콜을 기반으로 여러 가지 컨텐츠를 구현할 수 있습니다. ConnectionAgent는 커넥터가 초기화될 때 자동으로 생성되며 Connector.GetConnectionAgent() 함수를 이용해 얻을 수 있습니다.
 
@@ -8,9 +10,9 @@ ConnectionAgent는 GameAnvil 서버의 커넥션 노드와 관련된 작업을 �
 ConnectionAgent connectionAgent = connector.GetConnectionAgent();
 ```
 
-### 서버 접속
+#### 서버 접속
 
-ConnectionAgent의 Connect 함수를 이용해 서버에 접속합니다. 
+ConnectionAgent의 Connect 함수를 이용해 서버에 접속합니다.
 
 ```c#
 /// <summary>
@@ -30,10 +32,9 @@ connector.GetConnectionAgent().Connect(ip, port, (ConnectionAgent connectionAgen
 });
 ```
 
-### 인증
+#### 인증
 
-ConnectionAgent의 Authenticate 함수를 이용해 인증 절차를 진행합니다. 매개변수로 deviceId, accountId, password, payload, 응답을 처리할 콜백을 넘겨줍니다. deviceId는 중복 접속에 대한 처리에 활용되며, accountId와 password를 활용하여 서버에서 인증 처리를 할 수 있습니다. 인증을 위해 deviceId, accountId, password 외의 추가 정보가 필요할 경우 payload에 담아 보낼 수 있으며 사용하지 않을 경우 payload 매개변수는 생략할 수 있습니다. 
-Authenticate 함수를 호출하면 서버에서는 BaseConnection의 onAuthentication() 콜백이 호출되며 이 콜백의 처리 결과로 인증의 성공, 실패가 결정됩니다.
+ConnectionAgent의 Authenticate 함수를 이용해 인증 절차를 진행합니다. 매개변수로 deviceId, accountId, password, payload, 응답을 처리할 콜백을 넘겨줍니다. deviceId는 중복 접속에 대한 처리에 활용되며, accountId와 password를 활용하여 서버에서 인증 처리를 할 수 있습니다. 인증을 위해 deviceId, accountId, password 외의 추가 정보가 필요할 경우 payload에 담아 보낼 수 있으며 사용하지 않을 경우 payload 매개변수는 생략할 수 있습니다. Authenticate 함수를 호출하면 서버에서는 BaseConnection의 onAuthentication() 콜백이 호출되며 이 콜백의 처리 결과로 인증의 성공, 실패가 결정됩니다.
 
 ```c#
 /// <summary>
@@ -59,23 +60,23 @@ connector.GetConnectionAgent().Authenticate(deviceId, accountId, password, paylo
 });
 ```
 
-### 채널 정보
+#### 채널 정보
 
-GameAnvil은 설정에서 자유롭게 채널을 구성할 수 있습니다. 이런 채널 구성은 서버와 클라이언트 간에 미리 약속하여 고정된 형태로 사용할 수도 있지만, 상황에 따라 다양하게 변경하여 사용할 수도 있습니다. ConnectionAgent에서는 이렇게 변경된 채널 정보를 얻어올 수 있도록 몇 가지 함수를 제공합니다. 
+GameAnvil은 설정에서 자유롭게 채널을 구성할 수 있습니다. 이런 채널 구성은 서버와 클라이언트 간에 미리 약속하여 고정된 형태로 사용할 수도 있지만, 상황에 따라 다양하게 변경하여 사용할 수도 있습니다. ConnectionAgent에서는 이렇게 변경된 채널 정보를 얻어올 수 있도록 몇 가지 함수를 제공합니다.
 
-| 함수 | 설명 |
-| --- | --- |
-| GetChannelList() | 특정 서비스의 채널 아이디 목록 요청 | 
-| GetChannelCountInfo() | 특정 채널의 카운트 정보(유저와 방 개수) 요청 | 
-| GetChannelInfo() | 특정 채널의 정보(사용자 정의) 요청 |
+| 함수                       | 설명                                    |
+| ------------------------ | ------------------------------------- |
+| GetChannelList()         | 특정 서비스의 채널 아이디 목록 요청                  |
+| GetChannelCountInfo()    | 특정 채널의 카운트 정보(유저와 방 개수) 요청            |
+| GetChannelInfo()         | 특정 채널의 정보(사용자 정의) 요청                  |
 | GetAllChannelCountInfo() | 특정 서비스의 모든 채널에 대한 카운트 정보(유저와 방 개수) 요청 |
 
-<br>
+\
+
 
 아래에서 코드를 통해 더욱 자세하게 살펴보겠습니다.
 
-
-GetChannelList()는 특정 서비스의 채널 아이디 목록을 요청하여 받아올 수 있습니다. 
+GetChannelList()는 특정 서비스의 채널 아이디 목록을 요청하여 받아올 수 있습니다.
 
 ```c#
 /// <summary>
@@ -94,9 +95,11 @@ connector.GetConnectionAgent().GetChannelList(serviceName, (ConnectionAgent conn
 	}
 });
 ```
-<br>
 
-GetChannelCountInfo()는 특정 채널의 카운트 정보(유저와 방 개수)를 요청하여 받아올 수 있습니다. 
+\
+
+
+GetChannelCountInfo()는 특정 채널의 카운트 정보(유저와 방 개수)를 요청하여 받아올 수 있습니다.
 
 ```c#
 /// <summary>
@@ -117,9 +120,11 @@ connector.GetConnectionAgent().GetChannelCountInfo(serviceName, channelId, (Conn
 	}
 });
 ```
-<br>
 
-GetChannelInfo()는 특정 채널의 정보(사용자 정의)를 요청하여 받아올 수 있습니다. 
+\
+
+
+GetChannelInfo()는 특정 채널의 정보(사용자 정의)를 요청하여 받아올 수 있습니다.
 
 ```c#
 /// <summary>
@@ -140,9 +145,11 @@ connector.GetConnectionAgent().GetChannelInfo(serviceName, channelId, (Connectio
 	}
 });
 ```
-<br>
 
-GetAllChannelCountInfo()는 특정 서비스의 모든 채널에 대한 카운트 정보(유저와 방 개수)를 요청하여 받아올 수 있습니다. 
+\
+
+
+GetAllChannelCountInfo()는 특정 서비스의 모든 채널에 대한 카운트 정보(유저와 방 개수)를 요청하여 받아올 수 있습니다.
 
 ```c#
 /// <summary>
@@ -162,9 +169,11 @@ connector.GeConnectionAgent().GetAllChannelCountInfo(serviceName, (ConnectionAge
 	}
 });
 ```
-<br>
 
-GetAllChannelInfo()는 특정 서비스의 모든 채널에 대한 정보(사용자 정의)를 요청하여 받아올 수 있습니다. 
+\
+
+
+GetAllChannelInfo()는 특정 서비스의 모든 채널에 대한 정보(사용자 정의)를 요청하여 받아올 수 있습니다.
 
 ```c#
 /// <summary>
@@ -185,9 +194,9 @@ connector.GetConnectionAgent().GetAllChannelInfo(serviceName, (ConnectionAgent c
 });
 ```
 
-### 접속 종료
+#### 접속 종료
 
-ConnectionAgent의 Disconnect 함수를 이용해 서버와의 접속을 종료합니다. 
+ConnectionAgent의 Disconnect 함수를 이용해 서버와의 접속을 종료합니다.
 
 ```c#
 /// <summary>
@@ -205,12 +214,11 @@ connector.GetConnectionAgent().Disconnect((ConnectionAgent connectionAgent, Resu
 });
 ```
 
-### Listener
+#### Listener
 
-ConnectionAgent에서 모든 요청에 대한 결과 또는 서버로부터의 알림을 전달받는 방법은 크게 두 가지입니다.
-하나는 ConnectionAgent에 정의되어 있는 delegate에 함수를 추가하는 방법입니다. 다른 하나는 IConnectionListener 인터페이스를 구현한 리스너를 등록하는 방법입니다.
+ConnectionAgent에서 모든 요청에 대한 결과 또는 서버로부터의 알림을 전달받는 방법은 크게 두 가지입니다. 하나는 ConnectionAgent에 정의되어 있는 delegate에 함수를 추가하는 방법입니다. 다른 하나는 IConnectionListener 인터페이스를 구현한 리스너를 등록하는 방법입니다.
 
-먼저, 첫 번째 방법입니다. ConnectionAgent는 모든 동작의 결과 또는 알림을 받을 수 있도록 각각의 delegate를 맴버로 가지고 있습니다. 앞서 설명한 API에 콜백 매개변수를 생략하고 호출했거나 서버에서 알림을 보냈을 경우 delegate에 등록된 함수로 응답을 받을 수 있습니다.  
+먼저, 첫 번째 방법입니다. ConnectionAgent는 모든 동작의 결과 또는 알림을 받을 수 있도록 각각의 delegate를 맴버로 가지고 있습니다. 앞서 설명한 API에 콜백 매개변수를 생략하고 호출했거나 서버에서 알림을 보냈을 경우 delegate에 등록된 함수로 응답을 받을 수 있습니다.
 
 ```c#
 /// <summary>
@@ -295,9 +303,11 @@ public Interface.DelConnectionOnErrorCommand onErrorCommandListeners;
 /// <param name="command">패킷의 메시지 이름</param>
 public Interface.DelConnectionOnErrorCustomCommand onErrorCustomCommandListeners;
 ```
-<br>
 
-다음으로, 두 번째 방법입니다. IConnectionListener는 ConnectionAgent의 모든 동작의 결과 또는 알림을 정의한 인터페이스입니다. 이 인터페이스를 구현한 리스너를 ConnectionAgent.AddConnectionListener()로 등록하면 등록한 리스너로 응답을 받을 수 있습니다. 
+\
+
+
+다음으로, 두 번째 방법입니다. IConnectionListener는 ConnectionAgent의 모든 동작의 결과 또는 알림을 정의한 인터페이스입니다. 이 인터페이스를 구현한 리스너를 ConnectionAgent.AddConnectionListener()로 등록하면 등록한 리스너로 응답을 받을 수 있습니다.
 
 ```c#
 public class ConnectionListener : IConnectionListener
@@ -387,4 +397,3 @@ public class ConnectionListener : IConnectionListener
 
 connector.GetConnectionAgent().AddConnectionListener(new ConnectionListener);
 ```
-

@@ -38,7 +38,6 @@
       * [iOS](nhn-cloud-./sdk/undefined-1/release-notes-ios.md)
       * [Unity](nhn-cloud-./sdk/undefined-1/release-notes-unity.md)
       * [Windows C++](nhn-cloud-./sdk/undefined-1/release-notes-windows.md)
-  * [신규 항목 만들었음](nhn-cloud-./undefined.md)
   * [리전 가이드](nhn-cloud-./region-guide.md)
   * [아키텍처 아이콘](nhn-cloud-./architecture-icon.md)
 * [Compute](compute/README.md)

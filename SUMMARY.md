@@ -8,6 +8,7 @@
   * [보안 정책](nhn-cloud-./security-policy.md)
   * [SDK 사용 가이드](nhn-cloud-./sdk/README.md)
     * [개요](nhn-cloud-./sdk/overview.md)
+    * [신규페이지](nhn-cloud-./sdk/new\_page.md)
     * [시작하기](nhn-cloud-./sdk/undefined/README.md)
       * [Android](nhn-cloud-./sdk/undefined/getting-started-android.md)
       * [iOS](nhn-cloud-./sdk/undefined/getting-started-ios.md)

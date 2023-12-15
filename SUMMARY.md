@@ -5,6 +5,7 @@
   * [사용 가이드](nhncloud/user-guide.md)
   * [콘솔 사용 가이드](nhncloud/console-guide.md)
   * [리소스 제공 정책](nhncloud/resource-policy.md)
+  * [리소스 제공 정책2](nhncloud/resource-policy.md)
   * [보안 정책](nhncloud/security-policy.md)
   * [SDK 사용 가이드](nhn-cloud/sdk/README.md)
     * [개요](nhncloud/nhncloud-sdk/overview.md)

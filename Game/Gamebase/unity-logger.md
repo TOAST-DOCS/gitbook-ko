@@ -1,23 +1,21 @@
-## Game > Gamebase > Unity SDK 사용 가이드 > Logger
+# Logger
 
 여기에서는 Unity에서 NHN Cloud Logger SDK를 사용하는 방법을 알아 보겠습니다.
 
-### Initialize
-Log & Crash Search에서 발급 받은 AppKey로  NHN Cloud Logger SDK를 초기화 합니다
+## Initialize
+
+Log & Crash Search에서 발급 받은 AppKey로 NHN Cloud Logger SDK를 초기화 합니다
 
 **API**
 
-Supported Platforms
-<span style="color:#1D76DB; font-size: 10pt">■</span> UNITY_IOS
-<span style="color:#0E8A16; font-size: 10pt">■</span> UNITY_ANDROID
-<span style="color:#F9D0C4; font-size: 10pt">■</span> UNITY_STANDALONE
-<span style="color:#F9D0C4; font-size: 10pt">■</span> UNITY_WEBGL
+Supported Platforms ■ UNITY\_IOS ■ UNITY\_ANDROID ■ UNITY\_STANDALONE ■ UNITY\_WEBGL
 
 ```cs
 static void Initialize(GamebaseRequest.Logger.Configuration configuration)
 ```
 
 **Example**
+
 ```cs
 public static void InitializeSample()
 {
@@ -28,9 +26,10 @@ public static void InitializeSample()
 }
 ```
 
-### Send Logs
-Log & Crash Server로 로그를 전송합니다
-NHN Cloud Logger SDK는 아래 다섯 가지 레벨의 로그를 전송할 수 있습니다. 
+## Send Logs
+
+Log & Crash Server로 로그를 전송합니다 NHN Cloud Logger SDK는 아래 다섯 가지 레벨의 로그를 전송할 수 있습니다.
+
 * DEBUG
 * INFO
 * WARN
@@ -38,15 +37,12 @@ NHN Cloud Logger SDK는 아래 다섯 가지 레벨의 로그를 전송할 수 �
 * FATAL
 
 로그 레벨은 다음과 같습니다.
+
 * DEBUG > INFO > WARN > ERROR > FATAL
 
 **API**
 
-Supported Platforms
-<span style="color:#1D76DB; font-size: 10pt">■</span> UNITY_IOS
-<span style="color:#0E8A16; font-size: 10pt">■</span> UNITY_ANDROID
-<span style="color:#F9D0C4; font-size: 10pt">■</span> UNITY_STANDALONE
-<span style="color:#F9D0C4; font-size: 10pt">■</span> UNITY_WEBGL
+Supported Platforms ■ UNITY\_IOS ■ UNITY\_ANDROID ■ UNITY\_STANDALONE ■ UNITY\_WEBGL
 
 ```cs
 static void Debug(string message, Dictionary<string, string> userFields = null)
@@ -57,6 +53,7 @@ static void Fatal(string message, Dictionary<string, string> userFields = null)
 ```
 
 **Example**
+
 ```cs
 public void DebugSample()
 {
@@ -124,23 +121,20 @@ public void FatalSample()
 }
 ```
 
-### Set User-Defined Fields
-원하는 사용자 정의 필드를 설정합니다. 
-사용자 정의 필드를 설정하면 로그 전송 API를 호출할 때마다 설정한 값을 로그와 함께 서버로 전송합니다.
+## Set User-Defined Fields
+
+원하는 사용자 정의 필드를 설정합니다. 사용자 정의 필드를 설정하면 로그 전송 API를 호출할 때마다 설정한 값을 로그와 함께 서버로 전송합니다.
 
 **API**
 
-Supported Platforms
-<span style="color:#1D76DB; font-size: 10pt">■</span> UNITY_IOS
-<span style="color:#0E8A16; font-size: 10pt">■</span> UNITY_ANDROID
-<span style="color:#F9D0C4; font-size: 10pt">■</span> UNITY_STANDALONE
-<span style="color:#F9D0C4; font-size: 10pt">■</span> UNITY_WEBGL
+Supported Platforms ■ UNITY\_IOS ■ UNITY\_ANDROID ■ UNITY\_STANDALONE ■ UNITY\_WEBGL
 
 ```cs
 static void SetUserField(string key, string value)
 ```
 
 **Example**
+
 ```cs
 public void SetUserFieldSample()
 {
@@ -148,22 +142,20 @@ public void SetUserFieldSample()
 }
 ```
 
-### Further Tasks after Sending Logs
+## Further Tasks after Sending Logs
+
 리스너를 등록하면 로그 전송 후 추가 작업을 진행할 수 있습니다.
 
 **API**
 
-Supported Platforms
-<span style="color:#1D76DB; font-size: 10pt">■</span> UNITY_IOS
-<span style="color:#0E8A16; font-size: 10pt">■</span> UNITY_ANDROID
-<span style="color:#F9D0C4; font-size: 10pt">■</span> UNITY_STANDALONE
-<span style="color:#F9D0C4; font-size: 10pt">■</span> UNITY_WEBGL
+Supported Platforms ■ UNITY\_IOS ■ UNITY\_ANDROID ■ UNITY\_STANDALONE ■ UNITY\_WEBGL
 
 ```cs
 static void SetLoggerListener(GamebaseCallback.Logger.ILoggerListener listener)
 ```
 
 **Example**
+
 ```cs
 public class LoggerListener : GamebaseCallback.Logger.ILoggerListener
 {
@@ -195,22 +187,18 @@ public void SetLoggerListenerSample()
 }
 ```
 
-### Specifications for SetCrashListener API
-유니티를 이용하다보면 수집을 원하지 않는 예외 로그 혹은 크래시 로그들이 수집될 수 있습니다.
-NHN Cloud Logger SDK는 수집을 원하지 않는 크래시 로그를 필터링 하는 기능을 지원합니다.
-crashFilter의 return값이 true이면 로그는 필터링 됩니다.
+## Specifications for SetCrashListener API
 
-> <font color="red">[주의]</font><br/>
+유니티를 이용하다보면 수집을 원하지 않는 예외 로그 혹은 크래시 로그들이 수집될 수 있습니다. NHN Cloud Logger SDK는 수집을 원하지 않는 크래시 로그를 필터링 하는 기능을 지원합니다. crashFilter의 return값이 true이면 로그는 필터링 됩니다.
+
+> \[주의]\
+>
 >
 > 해당 기능은 유니티 예외에 한정된 기능입니다.
 
 **API**
 
-Supported Platforms
-<span style="color:#1D76DB; font-size: 10pt">■</span> UNITY_IOS
-<span style="color:#0E8A16; font-size: 10pt">■</span> UNITY_ANDROID
-<span style="color:#F9D0C4; font-size: 10pt">■</span> UNITY_STANDALONE
-<span style="color:#F9D0C4; font-size: 10pt">■</span> UNITY_WEBGL
+Supported Platforms ■ UNITY\_IOS ■ UNITY\_ANDROID ■ UNITY\_STANDALONE ■ UNITY\_WEBGL
 
 ```cs
 static void AddCrashFilter(GamebaseCallback.Logger.CrashFilter filter)
@@ -218,6 +206,7 @@ static void RemoveCrashFilter(GamebaseCallback.Logger.CrashFilter filter)
 ```
 
 **Example**
+
 ```cs
 public GamebaseCallback.Logger.CrashFilter crashFilter = (crashLogData) =>
 {
@@ -238,24 +227,20 @@ public void RemoveCrashFilterSample()
 }
 ```
 
-### Send Handled Exceptions
+## Send Handled Exceptions
 
-일반/크래시 로그뿐만 아니라, try/catch 구문에서 예외와 관련된 내용을 Report API를 사용하여 전송할 수 있습니다.
-이렇게 전송한 예외 로그는 **Log & Crash Search** 콘솔 > **App Crash Search** 탭의 **오류 유형**에서 'Handled'로 필터링하여 조회할 수 있습니다.
+일반/크래시 로그뿐만 아니라, try/catch 구문에서 예외와 관련된 내용을 Report API를 사용하여 전송할 수 있습니다. 이렇게 전송한 예외 로그는 **Log & Crash Search** 콘솔 > **App Crash Search** 탭의 **오류 유형**에서 'Handled'로 필터링하여 조회할 수 있습니다.
 
 **API**
 
-Supported Platforms
-<span style="color:#1D76DB; font-size: 10pt">■</span> UNITY_IOS
-<span style="color:#0E8A16; font-size: 10pt">■</span> UNITY_ANDROID
-<span style="color:#F9D0C4; font-size: 10pt">■</span> UNITY_STANDALONE
-<span style="color:#F9D0C4; font-size: 10pt">■</span> UNITY_WEBGL
+Supported Platforms ■ UNITY\_IOS ■ UNITY\_ANDROID ■ UNITY\_STANDALONE ■ UNITY\_WEBGL
 
 ```cs
 static void Report(GamebaseLoggerConst.LogLevel logLevel, string message, string logString, string stackTrace)
 ```
 
 **Example**
+
 ```cs
 public void ReportSample(Exception e)
 {

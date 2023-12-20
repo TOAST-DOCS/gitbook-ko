@@ -1,10 +1,10 @@
-## Game > Gamebase > Android SDK 사용 가이드 > 초기화
+# 초기화
 
 Gamebase Android SDK를 사용하려면 먼저 초기화를 진행해야 합니다.
 
-### onActivityResult
+## onActivityResult
 
-Gamebase의 정상적인 동작을 위해 반드시 **Activity#onActivityResult(int, int, Intent)**에서 **Gamebase.onActivityResult(int, int, Intent)**를 호출해야 합니다.
+Gamebase의 정상적인 동작을 위해 반드시 \*\*Activity#onActivityResult(int, int, Intent)\*\*에서 \*\*Gamebase.onActivityResult(int, int, Intent)\*\*를 호출해야 합니다.
 
 **API**
 
@@ -12,42 +12,42 @@ Gamebase의 정상적인 동작을 위해 반드시 **Activity#onActivityResult(
 + (void)Gamebase.onActivityResult(int requestCode, int resultCode, Intent data);
 ```
 
-### Initialization Flow
+## Initialization Flow
 
 게임이 시작되면 Debug Mode 를 설정하고, Gamebase 를 초기화하여 Launching Status Code 에 따라 게임 진입여부를 결정하도록 아래 Flow 와 같이 구현하시면 됩니다.
 
-![initialization flow](https://static.toastoven.net/prod_gamebase/DevelopersGuide/initialization_flow_2.19.0.png)
+![initialization flow](https://static.toastoven.net/prod\_gamebase/DevelopersGuide/initialization\_flow\_2.19.0.png)
 
-### Configuration Settings
+## Configuration Settings
 
 Gamebase를 초기화할 때, GamebaseConfiguration.Builder 객체로 Gamebase 설정을 변경할 수 있습니다.
 
-| API                                      | Mandatory(M) / Optional(O) | Description                              |
-| ---------------------------------------- | -------------------------- | ---------------------------------------- |
-| newBuilder(String appId, String appVersion, String storeCode) | **M**                      | GamebaseConfiguration.Builder 객체는 newBuilder() 함수를 통해 생성할 수 있습니다.<br/><br/> **appId**는 NHN Cloud Project로 발급 받은 앱 ID를 입력합니다. <br/> **appVersion**은 게임이 서비스 상태, 업데이트 상태 혹은 점검 상태 등에 해당하는지 판단하는 곳에 쓰입니다. 게임 버전을 지정해 주세요. <br/> **storeCode**는 APK가 배포되는 스토어를 의미합니다. 스토어별 코드는 다음 가이드를 참고하시기 바랍니다. [Purchase - Initialization](./aos-purchase/#6-initialization) |
-| build()                                  | **M**                      | 설정을 마친 Builder를 Configuration 객체로 변환합니다.<br/>**Gamebase.initialize()** API에서 필요합니다. |
-| enablePopup(boolean enable)              | O                          | **[UI]**<br/>시스템 점검, 이용 제재(ban) 등 게임 유저가 게임을 플레이할 수 없는 상황에서 팝업 창 등으로 사유를 표시해야 할 때가 있습니다.<br/>**true**로 설정하면 Gamebase가 해당 상황에서 정보 팝업 창을 자동으로 표시합니다.<br/>기본값은 **false**입니다.<br/>**false** 상태에서는 론칭 결과를 통해 정보를 획득한 후 자체 UI를 구현해 게임을 플레이할 수 없는 이유를 표시해 주시기 바랍니다. |
-| enableLaunchingStatusPopup(boolean enable) | O                          | **[UI]**<br/>론칭 결과에 따라 로그인할 수 없는 상태에서(주로 점검 상태) Gamebase가 자동으로 팝업 창을 표시할지 여부를 변경할 수 있습니다.<br/>**enablePopup(true)** 상태에서만 동작합니다.<br/>기본값은 **true**입니다. |
-| enableBanPopup(boolean enable)           | O                          | **[UI]**<br/>게임 유저가 이용 제재를 당한 상태일 때 Gamebase가 자동으로 제재 사유를 팝업 창으로 표시할지 여부를 변경할 수 있습니다.<br/>**enablePopup(true)** 상태에서만 동작합니다.<br/>기본값은 **true**입니다. |
+| API                                                           | Mandatory(M) / Optional(O) | Description                                                                                                                                                                                                                                                                                                                                                                                                |
+| ------------------------------------------------------------- | -------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| newBuilder(String appId, String appVersion, String storeCode) | **M**                      | <p>GamebaseConfiguration.Builder 객체는 newBuilder() 함수를 통해 생성할 수 있습니다.<br><br><strong>appId</strong>는 NHN Cloud Project로 발급 받은 앱 ID를 입력합니다.<br><strong>appVersion</strong>은 게임이 서비스 상태, 업데이트 상태 혹은 점검 상태 등에 해당하는지 판단하는 곳에 쓰입니다. 게임 버전을 지정해 주세요.<br><strong>storeCode</strong>는 APK가 배포되는 스토어를 의미합니다. 스토어별 코드는 다음 가이드를 참고하시기 바랍니다. <a href="aos-purchase/#6-initialization">Purchase - Initialization</a></p> |
+| build()                                                       | **M**                      | <p>설정을 마친 Builder를 Configuration 객체로 변환합니다.<br><strong>Gamebase.initialize()</strong> API에서 필요합니다.</p>                                                                                                                                                                                                                                                                                                     |
+| enablePopup(boolean enable)                                   | O                          | <p><strong>[UI]</strong><br>시스템 점검, 이용 제재(ban) 등 게임 유저가 게임을 플레이할 수 없는 상황에서 팝업 창 등으로 사유를 표시해야 할 때가 있습니다.<br><strong>true</strong>로 설정하면 Gamebase가 해당 상황에서 정보 팝업 창을 자동으로 표시합니다.<br>기본값은 <strong>false</strong>입니다.<br><strong>false</strong> 상태에서는 론칭 결과를 통해 정보를 획득한 후 자체 UI를 구현해 게임을 플레이할 수 없는 이유를 표시해 주시기 바랍니다.</p>                                                                                        |
+| enableLaunchingStatusPopup(boolean enable)                    | O                          | <p><strong>[UI]</strong><br>론칭 결과에 따라 로그인할 수 없는 상태에서(주로 점검 상태) Gamebase가 자동으로 팝업 창을 표시할지 여부를 변경할 수 있습니다.<br><strong>enablePopup(true)</strong> 상태에서만 동작합니다.<br>기본값은 <strong>true</strong>입니다.</p>                                                                                                                                                                                                          |
+| enableBanPopup(boolean enable)                                | O                          | <p><strong>[UI]</strong><br>게임 유저가 이용 제재를 당한 상태일 때 Gamebase가 자동으로 제재 사유를 팝업 창으로 표시할지 여부를 변경할 수 있습니다.<br><strong>enablePopup(true)</strong> 상태에서만 동작합니다.<br>기본값은 <strong>true</strong>입니다.</p>                                                                                                                                                                                                              |
 
-### Debug Mode
+## Debug Mode
+
 * Gamebase는 경고(warning)와 오류 로그만을 표시합니다.
-* 개발에 참고할 수 있는 시스템 로그를 켜려면 **Gamebase.setDebugMode(true)**를 호출하시기 바랍니다.
+* 개발에 참고할 수 있는 시스템 로그를 켜려면 \*\*Gamebase.setDebugMode(true)\*\*를 호출하시기 바랍니다.
 
-> <font color="red">[주의]</font><br/>
+> \[주의]\
+>
 >
 > 게임을 **릴리스**할 때는 반드시 소스 코드에서 setDebugMode 호출을 제거하거나 파라미터를 false로 바꿔서 빌드하세요.
 
-디버그 설정은 Console에서도 가능하며 Console에서 설정된 값을 우선시합니다.
-Console 설정 방법은 아래 가이드를 참고하십시오.
+디버그 설정은 Console에서도 가능하며 Console에서 설정된 값을 우선시합니다. Console 설정 방법은 아래 가이드를 참고하십시오.
 
-* [Console 테스트 단말기 설정](./oper-app/#test-device)
-* [Console Client 설정](./oper-app/#client)
+* [Console 테스트 단말기 설정](oper-app/#test-device)
+* [Console Client 설정](oper-app/#client)
 
+## Initialize
 
-### Initialize
-
-**Activity#onCreate(Bundle)**에서 **Gamebase#initialize(Activity, GamebaseConfiguration, GamebaseDataCallback)**을 호출하여 Gamebase SDK를 초기화합니다.
+\*\*Activity#onCreate(Bundle)\*\*에서 \*\*Gamebase#initialize(Activity, GamebaseConfiguration, GamebaseDataCallback)\*\*을 호출하여 Gamebase SDK를 초기화합니다.
 
 **API**
 
@@ -117,9 +117,9 @@ public class MainActivity extends AppCompatActivity {
 }
 ```
 
-### Launching Information
+## Launching Information
 
-Gamebase#initialize 호출 결과로 론칭 상태를 확인할 수 있습니다.<br/>
+Gamebase#initialize 호출 결과로 론칭 상태를 확인할 수 있습니다.\
 론칭 코드에 따라 게임 플레이 여부를 판단하시기 바랍니다.
 
 ```java
@@ -178,22 +178,20 @@ Gamebase.initialize(activity, configuration, new GamebaseDataCallback<LaunchingI
 
 getLaunchingInformations() API를 이용하면 초기화 이후에도 LaunchingInfo 객체를 획득할 수 있습니다.
 
-> <font color="red">[주의]</font><br/>
+> \[주의]\
 >
-> getLaunchingInformations() API 는 실시간으로 서버에서 정보를 가져오는 비동기 API가 아닙니다.
-> 2분 주기로 업데이트 되는 캐시 정보를 반환하므로, 실시간으로 현재의 점검 여부를 판단하는 용도로는 적합하지 않습니다.
-> 이런 경우에는 Launching Status Code가 변경되었을때 이벤트가 동작하는 GamebaseEventHandler 를 활용하시기 바랍니다.
-> [Game > Gamebase > Android SDK 사용 가이드 > ETC > Additional Features > Gamebase Event Handler > Observer](./aos-etc/#observer)
+>
+> getLaunchingInformations() API 는 실시간으로 서버에서 정보를 가져오는 비동기 API가 아닙니다. 2분 주기로 업데이트 되는 캐시 정보를 반환하므로, 실시간으로 현재의 점검 여부를 판단하는 용도로는 적합하지 않습니다. 이런 경우에는 Launching Status Code가 변경되었을때 이벤트가 동작하는 GamebaseEventHandler 를 활용하시기 바랍니다. [Game > Gamebase > Android SDK 사용 가이드 > ETC > Additional Features > Gamebase Event Handler > Observer](aos-etc/#observer)
 
 **API**
 
 ```java
 + (LaunchingInfo)Gamebase.Launching.getLaunchingInformations();
 ```
+
 LaunchingInfo 객체에는 Gamebase 콘솔에 설정한 값들과 게임 상태 등이 포함돼 있습니다.
 
-
-#### 1. Launching
+### 1. Launching
 
 Gamebase 론칭 정보입니다.
 
@@ -206,43 +204,43 @@ Gamebase Android SDK 초기화 설정에 입력한 앱 버전의 게임 상태 �
 
 상태 코드는 아래 표를 참고하십시오.
 
-##### Launching Status Code
+#### Launching Status Code
 
-| Status                      | Code | Description                              |
-| --------------------------- | ---- | ---------------------------------------- |
-| IN_SERVICE                  | 200  | 정상 서비스 중                                 |
-| RECOMMEND_UPDATE            | 201  | 업데이트 권장                                  |
-| IN_SERVICE_BY_QA_WHITE_LIST | 202  | 점검 중에는 서비스를 이용할 수 없지만 QA 단말기로 등록된 경우에는 점검과 상관없이 서비스에 접속해 테스트할 수 있습니다. |
-| IN_TEST                     | 203  | 테스트 중 |
-| IN_REVIEW                   | 204  | 심사 중 |
-| IN_BETA                     | 205  | 베타 서버 환경 |
-| REQUIRE_UPDATE              | 300  | 업데이트 필수                                  |
-| BLOCKED_USER                | 301  | 접속 차단으로 등록된 단말기(디바이스 키)로 서비스에 접속한 경우입니다. |
-| TERMINATED_SERVICE          | 302  | 서비스 종료                                   |
-| INSPECTING_SERVICE          | 303  | 서비스 점검 중                                 |
-| INSPECTING_ALL_SERVICES     | 304  | 전체 서비스 점검 중                              |
-| INTERNAL_SERVER_ERROR       | 500  | 내부 서버 오류                                 |
+| Status                           | Code | Description                                                           |
+| -------------------------------- | ---- | --------------------------------------------------------------------- |
+| IN\_SERVICE                      | 200  | 정상 서비스 중                                                              |
+| RECOMMEND\_UPDATE                | 201  | 업데이트 권장                                                               |
+| IN\_SERVICE\_BY\_QA\_WHITE\_LIST | 202  | 점검 중에는 서비스를 이용할 수 없지만 QA 단말기로 등록된 경우에는 점검과 상관없이 서비스에 접속해 테스트할 수 있습니다. |
+| IN\_TEST                         | 203  | 테스트 중                                                                 |
+| IN\_REVIEW                       | 204  | 심사 중                                                                  |
+| IN\_BETA                         | 205  | 베타 서버 환경                                                              |
+| REQUIRE\_UPDATE                  | 300  | 업데이트 필수                                                               |
+| BLOCKED\_USER                    | 301  | 접속 차단으로 등록된 단말기(디바이스 키)로 서비스에 접속한 경우입니다.                              |
+| TERMINATED\_SERVICE              | 302  | 서비스 종료                                                                |
+| INSPECTING\_SERVICE              | 303  | 서비스 점검 중                                                              |
+| INSPECTING\_ALL\_SERVICES        | 304  | 전체 서비스 점검 중                                                           |
+| INTERNAL\_SERVER\_ERROR          | 500  | 내부 서버 오류                                                              |
 
-[Game > Gamebase > 콘솔 사용 가이드 > 앱 > App](./oper-app/#app)
+[Game > Gamebase > 콘솔 사용 가이드 > 앱 > App](oper-app/#app)
 
 **1.2 App**
 
 Gamebase 콘솔에 등록된 앱 정보입니다.
 
 * accessInfo
-    * serverAddress: 서버 주소
+  * serverAddress: 서버 주소
 * customerService
-    * accessInfo : 고객 센터 연락처
-    * type : 고객 센터 유형
-    * url : 고객 센터 URL
+  * accessInfo : 고객 센터 연락처
+  * type : 고객 센터 유형
+  * url : 고객 센터 URL
 * relatedUrls
-    * termsUrl: 이용 약관
-    * personalInfoCollectionUrl: 개인 정보 동의
-    * punishRuleUrl: 이용 정지 규정
+  * termsUrl: 이용 약관
+  * personalInfoCollectionUrl: 개인 정보 동의
+  * punishRuleUrl: 이용 정지 규정
 * install: 설치 URL
 * idP: 인증 정보
 
-[Game > Gamebase > 콘솔 사용 가이드 > 앱 > Client](./oper-app/#client)
+[Game > Gamebase > 콘솔 사용 가이드 > 앱 > Client](oper-app/#client)
 
 **1.3 Maintenance**
 
@@ -255,18 +253,16 @@ Gamebase 콘솔에 등록된 점검 정보입니다.
 * message: 점검 사유
 * hideDate: 점검 시작, 종료 시간을 표시할 것인지 여부
 
-[Game > Gamebase > 콘솔 사용 가이드 > 운영 > Maintenance](./oper-operation/#maintenance)
-<br/>
-##### Change Default Maintenance HTML
+[Game > Gamebase > 콘솔 사용 가이드 > 운영 > Maintenance](oper-operation/#maintenance)\
 
-`enablePopup`과 `enableLaunchingStatusPopup` 값이 모두 `true`인 경우, 게임이 점검 상태라면 자동으로 점검 팝업 창이 표시됩니다.
-![](https://static.toastoven.net/prod_gamebase/DevelopersGuide/maintenance_popup_android_2.30.0.png)
 
-여기서 **자세히 보기** 버튼을 클릭하면 점검 정보가 자동으로 웹뷰로 표시됩니다.
-![](https://static.toastoven.net/prod_gamebase/DevelopersGuide/maintenance_webview_android_2.30.0.png)
+#### Change Default Maintenance HTML
 
-이때 표시되는 html 파일을 수정하고 싶다면 다음 링크의 html 파일을 다운로드하여 원하는 대로 수정한 후 'assets/Gamebase' 폴더에 두면 Gamebase SDK에 내장된 기본 html 파일 대신 해당 html 파일을 사용하여 점검 정보를 표시하게 됩니다.
-[html 파일 다운로드 LINK](https://static.toastoven.net/prod_gamebase/DevelopersGuide/gamebase-maintenance.html)
+`enablePopup`과 `enableLaunchingStatusPopup` 값이 모두 `true`인 경우, 게임이 점검 상태라면 자동으로 점검 팝업 창이 표시됩니다. ![](https://static.toastoven.net/prod\_gamebase/DevelopersGuide/maintenance\_popup\_android\_2.30.0.png)
+
+여기서 **자세히 보기** 버튼을 클릭하면 점검 정보가 자동으로 웹뷰로 표시됩니다. ![](https://static.toastoven.net/prod\_gamebase/DevelopersGuide/maintenance\_webview\_android\_2.30.0.png)
+
+이때 표시되는 html 파일을 수정하고 싶다면 다음 링크의 html 파일을 다운로드하여 원하는 대로 수정한 후 'assets/Gamebase' 폴더에 두면 Gamebase SDK에 내장된 기본 html 파일 대신 해당 html 파일을 사용하여 점검 정보를 표시하게 됩니다. [html 파일 다운로드 LINK](https://static.toastoven.net/prod\_gamebase/DevelopersGuide/gamebase-maintenance.html)
 
 **1.4 Notice**
 
@@ -276,9 +272,9 @@ Gamebase 콘솔에 등록된 공지 정보입니다.
 * title: 제목
 * url: 점검 URL
 
-[Game > Gamebase > 콘솔 사용 가이드 > 운영 > Notice](./oper-operation/#notice)
+[Game > Gamebase > 콘솔 사용 가이드 > 운영 > Notice](oper-operation/#notice)
 
-#### 2. tcProduct
+### 2. tcProduct
 
 Gamebase와 연계된 NHN Cloud 서비스의 앱키(Appkey)입니다.
 
@@ -287,7 +283,7 @@ Gamebase와 연계된 NHN Cloud 서비스의 앱키(Appkey)입니다.
 * iap
 * push
 
-#### 3. tcIap
+### 3. tcIap
 
 NHN Cloud 콘솔에 등록된 IAP 스토어 정보입니다.
 
@@ -295,23 +291,20 @@ NHN Cloud 콘솔에 등록된 IAP 스토어 정보입니다.
 * name: App Name
 * storeCode: Store Code
 
-[Game > Gamebase > 콘솔 사용 가이드 > 결제](./oper-purchase/)
+[Game > Gamebase > 콘솔 사용 가이드 > 결제](oper-purchase/)
 
-#### 4. tcLaunching
+### 4. tcLaunching
 
 NHN Cloud Launching 콘솔에서 사용자가 입력한 정보입니다.
 
 * 사용자가 입력한 값을 JSON string으로 전달합니다.
 * NHN Cloud Launching 상세 설정은 아래 가이드를 참고하시기 바랍니다.
 
-[Game > Gamebase > 콘솔 사용 가이드 > 관리 > Config](./oper-management/#config)
+[Game > Gamebase > 콘솔 사용 가이드 > 관리 > Config](oper-management/#config)
 
+## Handling Unregistered Version
 
-### Handling Unregistered Version
-
-Gamebase 콘솔에 등록되지 않은 GameClientVersion 을 초기화를 하면 **LAUNCHING_UNREGISTERED_CLIENT(2004)** 에러가 발생합니다.
-enablePopup(true), enableLaunchingStatusPopup(true) 상태라면 강제 업데이트 팝업 창이 표시되고, 마켓으로 이동할 수 있습니다.
-Gamebase 팝업 창을 사용하지 않을 경우에는 UpdateInfo를 GamebaseException 객체로부터 얻어 사용자가 마켓으로 이동할 수 있도록 게임에서 직접 UI를 구현할 수 있습니다.
+Gamebase 콘솔에 등록되지 않은 GameClientVersion 을 초기화를 하면 **LAUNCHING\_UNREGISTERED\_CLIENT(2004)** 에러가 발생합니다. enablePopup(true), enableLaunchingStatusPopup(true) 상태라면 강제 업데이트 팝업 창이 표시되고, 마켓으로 이동할 수 있습니다. Gamebase 팝업 창을 사용하지 않을 경우에는 UpdateInfo를 GamebaseException 객체로부터 얻어 사용자가 마켓으로 이동할 수 있도록 게임에서 직접 UI를 구현할 수 있습니다.
 
 **VO**
 
@@ -360,19 +353,18 @@ Gamebase.initialize(activity, configuration, new GamebaseDataCallback<LaunchingI
 });
 ```
 
-### Error Handling
+## Error Handling
 
-| Error                        | Error Code | Description                |
-| ---------------------------- | ---------- | -------------------------- |
-| NOT_INITIALIZED              | 1          | Gamebase 초기화돼 있지 않습니다. |
-| NOT_LOGGED_IN                | 2          | 로그인이 필요합니다.            |
-| INVALID_PARAMETER            | 3          | 잘못된 파라미터입니다.           |
-| INVALID_JSON_FORMAT          | 4          | JSON 포맷 오류입니다.          |
-| USER_PERMISSION              | 5          | 권한이 없습니다.               |
-| NOT_SUPPORTED                | 10         | 지원하지 않는 기능입니다.        |
-| NOT_SUPPORTED_ANDROID        | 11         | Android에서 지원하지 않는 기능입니다.   |
-| ANDROID_ACTIVEAPP_NOT_CALLED | 32         | activeApp API가 호출되지 않았습니다.   |
-
+| Error                           | Error Code | Description                |
+| ------------------------------- | ---------- | -------------------------- |
+| NOT\_INITIALIZED                | 1          | Gamebase 초기화돼 있지 않습니다.     |
+| NOT\_LOGGED\_IN                 | 2          | 로그인이 필요합니다.                |
+| INVALID\_PARAMETER              | 3          | 잘못된 파라미터입니다.               |
+| INVALID\_JSON\_FORMAT           | 4          | JSON 포맷 오류입니다.             |
+| USER\_PERMISSION                | 5          | 권한이 없습니다.                  |
+| NOT\_SUPPORTED                  | 10         | 지원하지 않는 기능입니다.             |
+| NOT\_SUPPORTED\_ANDROID         | 11         | Android에서 지원하지 않는 기능입니다.   |
+| ANDROID\_ACTIVEAPP\_NOT\_CALLED | 32         | activeApp API가 호출되지 않았습니다. |
 
 * 전체 오류 코드는 다음 문서를 참고하시기 바랍니다.
-    * [오류 코드](./error-code/#client-sdk)
+  * [오류 코드](error-code/#client-sdk)

@@ -1,19 +1,23 @@
-## Game > Gamebase > Android SDK 사용 가이드 > UI
+# UI
 
-## ImageNotice
+### Game > Gamebase > Android SDK 사용 가이드 > UI
+
+### ImageNotice
 
 콘솔에 이미지를 등록한 후 사용자에게 공지를 띄울 수 있습니다.
 
-![ImageNotice Example](https://static.toastoven.net/prod_gamebase/DevelopersGuide/imageNotice-guide-002.png)
+![ImageNotice Example](https://static.toastoven.net/prod\_gamebase/DevelopersGuide/imageNotice-guide-002.png)
 
-### Show ImageNotices
+#### Show ImageNotices
 
 이미지 공지를 화면에 띄워 줍니다.
 
-#### Required 파라미터
+**Required 파라미터**
+
 * Activity : 이미지 공지가 노출되는 Activity입니다.
 
-#### Optional 파라미터
+**Optional 파라미터**
+
 * ImageNoticeConfiguration : 이미지 공지 설정을 변경할 수 있습니다.
 * GamebaseCallback : 이미지 공지가 전체 종료될 때 사용자에게 콜백으로 알려 줍니다.
 * GamebaseDataCallback : 이미지를 클릭했을 때, 콘솔에 등록한 payload 를 콜백으로 알려 줍니다.
@@ -31,10 +35,10 @@
 
 **ErrorCode**
 
-| Error | Error Code | Description |
-| --- | --- | --- |
-| NOT\_INITIALIZED | 1 | Gamebase.initialize가 호출되지 않았습니다. |
-| UI\_IMAGE\_NOTICE\_TIMEOUT | 6901 | 이미지 공지 팝업 창 표시중 타임아웃이 발생하여 모든 팝업 창을 강제 종료합니다. |
+| Error                      | Error Code | Description                                   |
+| -------------------------- | ---------- | --------------------------------------------- |
+| NOT\_INITIALIZED           | 1          | Gamebase.initialize가 호출되지 않았습니다.              |
+| UI\_IMAGE\_NOTICE\_TIMEOUT | 6901       | 이미지 공지 팝업 창 표시중 타임아웃이 발생하여 모든 팝업 창을 강제 종료합니다. |
 
 **Example**
 
@@ -56,10 +60,9 @@ Gamebase.ImageNotice.showImageNotices(getActivity(), null,
     });
 ```
 
-### Custom ImageNotices
+#### Custom ImageNotices
 
-사용자 설정 이미지 공지를 화면에 띄워 줍니다.
-ImageNoticeConfiguration으로 사용자 설정 이미지 공지를 만들 수 있습니다.
+사용자 설정 이미지 공지를 화면에 띄워 줍니다. ImageNoticeConfiguration으로 사용자 설정 이미지 공지를 만들 수 있습니다.
 
 **Example**
 
@@ -72,18 +75,17 @@ ImageNoticeConfiguration configuration = ImageNoticeConfiguration.newBuilder()
 Gamebase.ImageNotice.showImageNotices(getActivity(), configuration, null, null);
 ```
 
-#### ImageNoticeConfiguration
+**ImageNoticeConfiguration**
 
-| API | Mandatory(M) / Optional(O) | Description |
-| --- | --- | --- |
-| newBuilder() | **M** | ImageNoticeConfiguration.Builder 객체는 newBuilder() 함수를 통해 생성할 수 있습니다. |
-| build() | **M** | 설정을 마친 Builder 를 Configuration 객체로 변환합니다. |
-| setBackgroundColor(int backgroundColor)<br>setBackgroundColor(String backgroundColor) | O | 이미지 공지 뒷 배경색.<br>String 은 android.graphics.Color.parseColor(String) API로 변환한 값을 사용합니다.<br>**default**: #80000000 |
-| setTimeout(long timeoutMs) | O | 이미지 공지 최대 로딩 시간 (단위 : millisecond)<br>**default**: 5000L (5s) |
-| enableAutoCloseByCustomScheme(boolean enable) | O | 커스텀 스킴 이벤트가 발생하면 이미지 공지를 강제종료 할지 여부를 결정합니다.<br>**default**: true |
+| API                                                                                          | Mandatory(M) / Optional(O) | Description                                                                                                                          |
+| -------------------------------------------------------------------------------------------- | -------------------------- | ------------------------------------------------------------------------------------------------------------------------------------ |
+| newBuilder()                                                                                 | **M**                      | ImageNoticeConfiguration.Builder 객체는 newBuilder() 함수를 통해 생성할 수 있습니다.                                                                 |
+| build()                                                                                      | **M**                      | 설정을 마친 Builder 를 Configuration 객체로 변환합니다.                                                                                            |
+| <p>setBackgroundColor(int backgroundColor)<br>setBackgroundColor(String backgroundColor)</p> | O                          | <p>이미지 공지 뒷 배경색.<br>String 은 android.graphics.Color.parseColor(String) API로 변환한 값을 사용합니다.<br><strong>default</strong>: #80000000</p> |
+| setTimeout(long timeoutMs)                                                                   | O                          | <p>이미지 공지 최대 로딩 시간 (단위 : millisecond)<br><strong>default</strong>: 5000L (5s)</p>                                                    |
+| enableAutoCloseByCustomScheme(boolean enable)                                                | O                          | <p>커스텀 스킴 이벤트가 발생하면 이미지 공지를 강제종료 할지 여부를 결정합니다.<br><strong>default</strong>: true</p>                                                 |
 
-
-### Close ImageNotices
+#### Close ImageNotices
 
 closeImageNotices API를 호출하여 현재 표시 중인 이미지 공지를 모두 종료할 수 있습니다.
 
@@ -93,28 +95,23 @@ closeImageNotices API를 호출하여 현재 표시 중인 이미지 공지를 �
 + (void)Gamebase.ImageNotice.closeImageNotices(@NonNull Activity activity);
 ```
 
-## Terms
+### Terms
 
 Gamebase 콘솔에 설정한 약관을 표시합니다.
 
-![TermsView Example](https://static.toastoven.net/prod_gamebase/DevelopersGuide/termsView-guide-ui-001_2.20.0.png)
+![TermsView Example](https://static.toastoven.net/prod\_gamebase/DevelopersGuide/termsView-guide-ui-001\_2.20.0.png)
 
-showTermsView API 는 웹뷰로 약관 창을 표시해줍니다.
-Game 의 UI 에 맞는 약관 창을 직접 제작하고자 하는 경우에는 queryTerms API 를 호출하여, Gamebase 콘솔에 설정한 약관 항목을 불러올 수 있습니다.
-유저가 약관에 동의했다면 각 항목별 동의 여부를 updateTerms API 를 통해 Gamebase 서버로 전송하시기 바랍니다.
+showTermsView API 는 웹뷰로 약관 창을 표시해줍니다. Game 의 UI 에 맞는 약관 창을 직접 제작하고자 하는 경우에는 queryTerms API 를 호출하여, Gamebase 콘솔에 설정한 약관 항목을 불러올 수 있습니다. 유저가 약관에 동의했다면 각 항목별 동의 여부를 updateTerms API 를 통해 Gamebase 서버로 전송하시기 바랍니다.
 
-### showTermsView
+#### showTermsView
 
-약관 창을 화면에 띄워 줍니다.
-유저가 약관에 동의를 했을 경우, 동의 여부를 서버에 등록합니다.
-약관에 동의했다면 showTermsView API 를 다시 호출해도 약관 창이 표시되지 않고 바로 성공 콜백이 반환됩니다.
-단, Gamebase 콘솔에서 '약관 재동의' 항목을 **필요** 로 변경했다면 유저가 다시 약관에 동의할 때까지는 약관 창이 표시됩니다.
+약관 창을 화면에 띄워 줍니다. 유저가 약관에 동의를 했을 경우, 동의 여부를 서버에 등록합니다. 약관에 동의했다면 showTermsView API 를 다시 호출해도 약관 창이 표시되지 않고 바로 성공 콜백이 반환됩니다. 단, Gamebase 콘솔에서 '약관 재동의' 항목을 **필요** 로 변경했다면 유저가 다시 약관에 동의할 때까지는 약관 창이 표시됩니다.
 
-#### Required 파라미터
+**Required 파라미터**
 
 * Activity : 약관 창이 노출되는 Activity입니다.
- 
-#### Optional 파라미터
+
+**Optional 파라미터**
 
 * GamebaseTermsConfiguration : GamebaseTermsConfiguration 객체를 통해 강제 약관 동의창 표시여부와 같은 설정을 변경할 수 있습니다.
 * GamebaseDataCallback : 약관 동의 후 약관 창이 종료될 때 사용자에게 콜백으로 알려줍니다. 콜백으로 오는 GamebaseDataContainer 객체는 GamebaseShowTermsViewResult로 변환해서 추가 정보를 확인할 수 있습니다.
@@ -131,30 +128,30 @@ Game 의 UI 에 맞는 약관 창을 직접 제작하고자 하는 경우에는 
 
 **GamebaseTermsConfiguration**
 
-| API | Mandatory(M) / Optional(O) | Description |
-| --- | --- | --- |
-| newBuilder() | **M** | GamebaseTermsConfiguration.Builder 객체는 newBuilder() 함수를 통해 생성할 수 있습니다. |
-| build() | **M** | 설정을 마친 Builder 를 Configuration 객체로 변환합니다. |
-| setForceShow(boolean forceShow) | O | 약관에 동의했다면 showTermsView API를 다시 호출해도 약관 창이 표시되지 않지만, 이를 무시하고 강제로 약관 창을 표시합니다.<br>**default**: false |
-| enableFixedFontSize(boolean enable) | O | 시스템 글자 크기를 무시하고 고정된 크기로 약관을 표시합니다.<br>**default**: false |
+| API                                 | Mandatory(M) / Optional(O) | Description                                                                                                             |
+| ----------------------------------- | -------------------------- | ----------------------------------------------------------------------------------------------------------------------- |
+| newBuilder()                        | **M**                      | GamebaseTermsConfiguration.Builder 객체는 newBuilder() 함수를 통해 생성할 수 있습니다.                                                  |
+| build()                             | **M**                      | 설정을 마친 Builder 를 Configuration 객체로 변환합니다.                                                                               |
+| setForceShow(boolean forceShow)     | O                          | <p>약관에 동의했다면 showTermsView API를 다시 호출해도 약관 창이 표시되지 않지만, 이를 무시하고 강제로 약관 창을 표시합니다.<br><strong>default</strong>: false</p> |
+| enableFixedFontSize(boolean enable) | O                          | <p>시스템 글자 크기를 무시하고 고정된 크기로 약관을 표시합니다.<br><strong>default</strong>: false</p>                                            |
 
 **GamebaseShowTermsViewResult**
 
-| Field | Type | Nullable / NonNull | Description |
-| --- | --- | --- | --- |
-| isTermsUIOpened | boolean | NonNull | **true** : 약관 창이 표시되어 유저가 동의하여 약관 창이 종료되었습니다.<br>**false** : 이미 약관에 동의하여 약관 창이 표시되지 않고 약관 창이 종료되었습니다. |
-| pushConfiguration | PushConfiguration | Nullable | isTermsUIOpened가 **true**이고, 약관에 푸시 수신 동의 여부를 추가했다면 pushConfiguration은 항상 유효한 객체를 가집니다.<br>그렇지 않을 경우에는 **null**입니다.<br>pushConfiguration이 유효할 때 pushConfiguration.pushEnabled 값은 항상 **true**입니다. |
+| Field             | Type              | Nullable / NonNull | Description                                                                                                                                                                                                                                    |
+| ----------------- | ----------------- | ------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| isTermsUIOpened   | boolean           | NonNull            | <p><strong>true</strong> : 약관 창이 표시되어 유저가 동의하여 약관 창이 종료되었습니다.<br><strong>false</strong> : 이미 약관에 동의하여 약관 창이 표시되지 않고 약관 창이 종료되었습니다.</p>                                                                                                         |
+| pushConfiguration | PushConfiguration | Nullable           | <p>isTermsUIOpened가 <strong>true</strong>이고, 약관에 푸시 수신 동의 여부를 추가했다면 pushConfiguration은 항상 유효한 객체를 가집니다.<br>그렇지 않을 경우에는 <strong>null</strong>입니다.<br>pushConfiguration이 유효할 때 pushConfiguration.pushEnabled 값은 항상 <strong>true</strong>입니다.</p> |
 
 **ErrorCode**
 
-| Error | Error Code | Description |
-| --- | --- | --- |
-| NOT\_INITIALIZED | 1 | Gamebase가 초기화되어 있지 않습니다. |
-| LAUNCHING\_SERVER\_ERROR | 2001 | 론칭 서버에서 전달받은 항목에 약관 관련 내용이 없는 경우에 발생하는 에러입니다.<br/>정상적인 상황이 아니므로 Gamebase 담당자에게 문의해주시기 바랍니다. |
-| UI\_TERMS\_ALREADY\_IN\_PROGRESS\_ERROR | 6924 | Terms API 호출이 아직 완료되지 않았습니다.<br/>잠시 후 다시 시도하세요. |
-| UI\_TERMS\_ANDROID\_DUPLICATED\_VIEW | 6925 | 약관 웹뷰가 아직 종료되지 않았는데 다시 호출되었습니다. |
-| WEBVIEW\_TIMEOUT | 7002 | 약관 웹뷰 표시 중 타임아웃이 발생했습니다. |
-| WEBVIEW\_HTTP\_ERROR | 7003 | 약관 웹뷰 오픈 중 HTTP 에러가 발생하였습니다. |
+| Error                                   | Error Code | Description                                                                                       |
+| --------------------------------------- | ---------- | ------------------------------------------------------------------------------------------------- |
+| NOT\_INITIALIZED                        | 1          | Gamebase가 초기화되어 있지 않습니다.                                                                          |
+| LAUNCHING\_SERVER\_ERROR                | 2001       | <p>론칭 서버에서 전달받은 항목에 약관 관련 내용이 없는 경우에 발생하는 에러입니다.<br>정상적인 상황이 아니므로 Gamebase 담당자에게 문의해주시기 바랍니다.</p> |
+| UI\_TERMS\_ALREADY\_IN\_PROGRESS\_ERROR | 6924       | <p>Terms API 호출이 아직 완료되지 않았습니다.<br>잠시 후 다시 시도하세요.</p>                                             |
+| UI\_TERMS\_ANDROID\_DUPLICATED\_VIEW    | 6925       | 약관 웹뷰가 아직 종료되지 않았는데 다시 호출되었습니다.                                                                   |
+| WEBVIEW\_TIMEOUT                        | 7002       | 약관 웹뷰 표시 중 타임아웃이 발생했습니다.                                                                          |
+| WEBVIEW\_HTTP\_ERROR                    | 7003       | 약관 웹뷰 오픈 중 HTTP 에러가 발생하였습니다.                                                                      |
 
 **Example**
 
@@ -188,23 +185,23 @@ public void afterLogin(Activity activity) {
 }
 ```
 
-### queryTerms
+#### queryTerms
 
-Gamebase는 단순한 형태의 웹뷰로 약관을 표시합니다.
-게임UI에 맞는 약관을 직접 제작하고자 하신다면, queryTerms API 를 호출하여 Gamebase 콘솔에 설정한 약관 정보를 내려받아 활용하실 수 있습니다.
+Gamebase는 단순한 형태의 웹뷰로 약관을 표시합니다. 게임UI에 맞는 약관을 직접 제작하고자 하신다면, queryTerms API 를 호출하여 Gamebase 콘솔에 설정한 약관 정보를 내려받아 활용하실 수 있습니다.
 
 로그인 후에 호출하신다면 게임유저가 약관에 동의했는지 여부도 함께 확인할 수 있습니다.
 
-> <font color="red">[주의]</font><br/>
+> \[주의]\
+>
 >
 > * GamebaseTermsContentDetail.getRequired()가 true 인 필수 항목은 Gamebase 서버에 저장되지 않으므로 agreed 값은 항상 false로 반환됩니다.
->     * 필수 항목은 항상 true 로 저장될 수 밖에 없어서 저장하는 의미가 없기 때문입니다.
+>   * 필수 항목은 항상 true 로 저장될 수 밖에 없어서 저장하는 의미가 없기 때문입니다.
 > * 푸시 수신 동의 여부도 Gamebase 서버에 저장되지 않으므로 agreed 값은 항상 false로 반환됩니다.
->     * 푸시 수신 동의 여부는 Gamebase.Push.queryTokenInfo API 를 통해 조회하시기 바랍니다.
-> * 콘솔에서 '기본 약관 설정' 을 하지 않는 경우, 약관 언어와 다른 국가코드로 설정된 단말기에서 queryTerms API 를 호출하면 **UI_TERMS_NOT_EXIST_FOR_DEVICE_COUNTRY(6922)** 에러가 발생합니다.
->     * 콘솔에서 '기본 약관 설정' 을 하거나, **UI_TERMS_NOT_EXIST_FOR_DEVICE_COUNTRY(6922)** 에러가 발생했을때는 약관을 표시하지 않도록 처리하시기 바랍니다.
+>   * 푸시 수신 동의 여부는 Gamebase.Push.queryTokenInfo API 를 통해 조회하시기 바랍니다.
+> * 콘솔에서 '기본 약관 설정' 을 하지 않는 경우, 약관 언어와 다른 국가코드로 설정된 단말기에서 queryTerms API 를 호출하면 **UI\_TERMS\_NOT\_EXIST\_FOR\_DEVICE\_COUNTRY(6922)** 에러가 발생합니다.
+>   * 콘솔에서 '기본 약관 설정' 을 하거나, **UI\_TERMS\_NOT\_EXIST\_FOR\_DEVICE\_COUNTRY(6922)** 에러가 발생했을때는 약관을 표시하지 않도록 처리하시기 바랍니다.
 
-#### Required 파라미터
+**Required 파라미터**
 
 * Activity : API 호출 시점의 최상위 Activity입니다.
 * GamebaseDataCallback : API 호출 결과를 사용자에게 콜백으로 알려줍니다. 콜백으로 오는 GamebaseQueryTermsResult 로 콘솔에 설정된 약관 정보를 얻을 수 있습니다.
@@ -218,11 +215,11 @@ Gamebase는 단순한 형태의 웹뷰로 약관을 표시합니다.
 
 **ErrorCode**
 
-| Error | Error Code | Description |
-| --- | --- | --- |
-| NOT\_INITIALIZED | 1 | Gamebase가 초기화되어 있지 않습니다. |
-| UI\_TERMS\_NOT\_EXIST\_IN\_CONSOLE | 6921 | 약관 정보가 콘솔에 등록되어 있지 않습니다. |
-| UI\_TERMS\_NOT\_EXIST\_FOR\_DEVICE\_COUNTRY | 6922 | 단말기 국가코드에 맞는 약관 정보가 콘솔에 등록되어 있지 않습니다. |
+| Error                                       | Error Code | Description                           |
+| ------------------------------------------- | ---------- | ------------------------------------- |
+| NOT\_INITIALIZED                            | 1          | Gamebase가 초기화되어 있지 않습니다.              |
+| UI\_TERMS\_NOT\_EXIST\_IN\_CONSOLE          | 6921       | 약관 정보가 콘솔에 등록되어 있지 않습니다.              |
+| UI\_TERMS\_NOT\_EXIST\_FOR\_DEVICE\_COUNTRY | 6922       | 단말기 국가코드에 맞는 약관 정보가 콘솔에 등록되어 있지 않습니다. |
 
 **Example**
 
@@ -246,46 +243,45 @@ Gamebase.Terms.queryTerms(activity, new GamebaseDataCallback<GamebaseQueryTermsR
 });
 ```
 
-#### GamebaseQueryTermsResult
+**GamebaseQueryTermsResult**
 
-| API            | Values                          | Description         |
-| -------------------- | --------------------------------| ------------------- |
-| getTermsSeq             | int                             | 약관 전체 KEY.<br/>updateTerms API 호출 시 필요한 값입니다.          |
-| getTermsVersion         | String                          | 약관 버전.<br/>updateTerms API 호출 시 필요한 값입니다.              |
-| getTermsCountryType     | String                          | 약관 타입.<br/> - KOREAN : 한국 약관 <br/> - GDPR : 유럽 약관 <br/> - ETC : 기타 국가 |
-| getContents             | List<GamebaseTermsContentDetail> | 약관 항목별 상세 정보 |
+| API                 | Values | Description                                                          |
+| ------------------- | ------ | -------------------------------------------------------------------- |
+| getTermsSeq         | int    | <p>약관 전체 KEY.<br>updateTerms API 호출 시 필요한 값입니다.</p>                  |
+| getTermsVersion     | String | <p>약관 버전.<br>updateTerms API 호출 시 필요한 값입니다.</p>                      |
+| getTermsCountryType | String | <p>약관 타입.<br>- KOREAN : 한국 약관<br>- GDPR : 유럽 약관<br>- ETC : 기타 국가</p> |
+| getContents         | List   | 약관 항목별 상세 정보                                                         |
 
-#### GamebaseTermsContentDetail
+**GamebaseTermsContentDetail**
 
-| API            | Values                | Description         |
-| -------------------- | ----------------------| ------------------- |
-| getTermsContentSeq      | int                   | 약관 항목 KEY         | 
-| getName                 | String                | 약관 항목 이름         |
-| getRequired             | boolean                  | 필수 동의 여부         |
-| getAgreePush            | String                | 광고성 푸시 동의 여부.<br/> - NONE : 동의 안함 <br/> - ALL : 전체 동의 <br/> - DAY : 주간 푸시 동의<br/> - NIGHT : 야간 푸시 동의          |
-| getAgreed               | boolean                  | 해당 약관 항목에 대한 유저 동의 여부.<br/> - 로그인 전에는 항상 false.<br/> - 푸시 항목은 항상 false. |
-| getNode1DepthPosition   | int                   | 1단계 항목 노출 순서.           |
-| getNode2DepthPosition   | int                   | 2단계 항목 노출 순서.<br/> 없을 경우 -1           |
-| getDetailPageUrl        | String                | 약관 자세히 보기 URL.<br/> 없을 경우 null. |
+| API                   | Values  | Description                                                                                       |
+| --------------------- | ------- | ------------------------------------------------------------------------------------------------- |
+| getTermsContentSeq    | int     | 약관 항목 KEY                                                                                         |
+| getName               | String  | 약관 항목 이름                                                                                          |
+| getRequired           | boolean | 필수 동의 여부                                                                                          |
+| getAgreePush          | String  | <p>광고성 푸시 동의 여부.<br>- NONE : 동의 안함<br>- ALL : 전체 동의<br>- DAY : 주간 푸시 동의<br>- NIGHT : 야간 푸시 동의</p> |
+| getAgreed             | boolean | <p>해당 약관 항목에 대한 유저 동의 여부.<br>- 로그인 전에는 항상 false.<br>- 푸시 항목은 항상 false.</p>                        |
+| getNode1DepthPosition | int     | 1단계 항목 노출 순서.                                                                                     |
+| getNode2DepthPosition | int     | <p>2단계 항목 노출 순서.<br>없을 경우 -1</p>                                                                  |
+| getDetailPageUrl      | String  | <p>약관 자세히 보기 URL.<br>없을 경우 null.</p>                                                              |
 
-### updateTerms
+#### updateTerms
 
-queryTerms API 로 내려받은 약관 정보로 UI 를 직접 제작했다면,
-게임유저가 약관에 동의한 내역을 updateTerms API 를 통해 Gamebase 서버로 전송하시기 바랍니다.
+queryTerms API 로 내려받은 약관 정보로 UI 를 직접 제작했다면, 게임유저가 약관에 동의한 내역을 updateTerms API 를 통해 Gamebase 서버로 전송하시기 바랍니다.
 
 선택 약관 동의를 취소하는 것과 같이, 약관에 동의했던 내역을 변경하는 목적으로도 활용하실 수 있습니다.
 
-> <font color="red">[주의]</font><br/>
+> \[주의]\
 >
-> 푸시 수신 동의 여부는 Gamebase 서버에 저장되지 않습니다.
-> 푸시 수신 동의 여부는 **로그인 후에** Gamebase.Push.registerPush API 를 호출해서 저장하세요.
+>
+> 푸시 수신 동의 여부는 Gamebase 서버에 저장되지 않습니다. 푸시 수신 동의 여부는 **로그인 후에** Gamebase.Push.registerPush API 를 호출해서 저장하세요.
 
-#### Required 파라미터
+**Required 파라미터**
 
 * Activity : API 호출 시점의 최상위 Activity입니다.
 * GamebaseUpdateTermsConfiguration : 서버에 등록할 유저의 선택 약관 정보입니다.
 
-#### Optional 파라미터
+**Optional 파라미터**
 
 * GamebaseCallback : 선택 약관 정보를 서버에 등록 후 사용자에게 콜백으로 알려줍니다.
 
@@ -299,11 +295,11 @@ queryTerms API 로 내려받은 약관 정보로 UI 를 직접 제작했다면,
 
 **ErrorCode**
 
-| Error | Error Code | Description |
-| --- | --- | --- |
-| NOT\_INITIALIZED | 1 | Gamebase가 초기화되어 있지 않습니다. |
-| UI\_TERMS\_UNREGISTERED\_SEQ | 6923 | 등록되지 않은 약관 Seq 값을 설정하였습니다. |
-| UI\_TERMS\_ALREADY\_IN\_PROGRESS\_ERROR | 6924 | Terms API 호출이 아직 완료되지 않았습니다.<br/>잠시 후 다시 시도하세요. |
+| Error                                   | Error Code | Description                                           |
+| --------------------------------------- | ---------- | ----------------------------------------------------- |
+| NOT\_INITIALIZED                        | 1          | Gamebase가 초기화되어 있지 않습니다.                              |
+| UI\_TERMS\_UNREGISTERED\_SEQ            | 6923       | 등록되지 않은 약관 Seq 값을 설정하였습니다.                            |
+| UI\_TERMS\_ALREADY\_IN\_PROGRESS\_ERROR | 6924       | <p>Terms API 호출이 아직 완료되지 않았습니다.<br>잠시 후 다시 시도하세요.</p> |
 
 **Example**
 
@@ -343,37 +339,37 @@ Gamebase.Terms.queryTerms(activity, new GamebaseDataCallback<GamebaseQueryTermsR
 });
 ```
 
-#### GamebaseUpdateTermsConfiguration
+**GamebaseUpdateTermsConfiguration**
 
 **Builder**
 
-| API                  | Description         |
-| -------------------- | ------------------- |
-| newBuilder(String termsVersion, int termsSeq, List<GamebaseTermsContent> contents) | Configuration 객체 생성을 위한 Builder 를 생성합니다. |
-| build() | 설정을 마친 Builder 를 Configuration 객체로 변환합니다. |
+| API                                                          | Description                               |
+| ------------------------------------------------------------ | ----------------------------------------- |
+| newBuilder(String termsVersion, int termsSeq, List contents) | Configuration 객체 생성을 위한 Builder 를 생성합니다.  |
+| build()                                                      | 설정을 마친 Builder 를 Configuration 객체로 변환합니다. |
 
-| Parameter            | Mandatory(M) / Optional(O) | Type                    | Description         |
-| -------------------- | -------------------------- | ------------------------- | ------------------- |
-| termsSeq             | **M**                      | int                       | 약관 전체 KEY.<br/>queryTerms API를 호출해서 내려받았던 값을 전달해야 합니다.             |
-| termsVersion         | **M**                      | String                    | 약관 버전.<br/>queryTerms API를 호출해서 내려받았던 값을 전달해야 합니다.   |
-| contents             | **M**                      | List<GamebaseTermsContent> | 선택 약관 유저 동의 정보  |
+| Parameter    | Mandatory(M) / Optional(O) | Type   | Description                                                  |
+| ------------ | -------------------------- | ------ | ------------------------------------------------------------ |
+| termsSeq     | **M**                      | int    | <p>약관 전체 KEY.<br>queryTerms API를 호출해서 내려받았던 값을 전달해야 합니다.</p> |
+| termsVersion | **M**                      | String | <p>약관 버전.<br>queryTerms API를 호출해서 내려받았던 값을 전달해야 합니다.</p>     |
+| contents     | **M**                      | List   | 선택 약관 유저 동의 정보                                               |
 
-#### GamebaseTermsContent
+**GamebaseTermsContent**
 
 **Constructor**
 
-| API                  | Description         |
-| -------------------- | ------------------- |
-| GamebaseTermsContent(int termsContentSeq, boolean agreed) | GamebaseTermsContent 생성자입니다. |
-| from(GamebaseTermsContentDetail) | GamebaseTermsContentDetail 객체로부터 GamebaseTermsContent 객체를 생성하는 팩토리 메서드입니다. |
-| setAgreed(boolean) | 해당 객체의 agreed 값을 변경합니다. |
+| API                                                       | Description                                                                |
+| --------------------------------------------------------- | -------------------------------------------------------------------------- |
+| GamebaseTermsContent(int termsContentSeq, boolean agreed) | GamebaseTermsContent 생성자입니다.                                               |
+| from(GamebaseTermsContentDetail)                          | GamebaseTermsContentDetail 객체로부터 GamebaseTermsContent 객체를 생성하는 팩토리 메서드입니다. |
+| setAgreed(boolean)                                        | 해당 객체의 agreed 값을 변경합니다.                                                    |
 
-| Parameter            | Mandatory(M) / Optional(O) | Values             | Description         |
-| -------------------- | -------------------------- | ------------------ | ------------------- |
-| termsContentSeq      | **M**                      | int                | 선택 약관 항목 KEY      |
-| agreed               | **M**                      | boolean            | 선택 약관 항목 동의 여부  |
+| Parameter       | Mandatory(M) / Optional(O) | Values  | Description    |
+| --------------- | -------------------------- | ------- | -------------- |
+| termsContentSeq | **M**                      | int     | 선택 약관 항목 KEY   |
+| agreed          | **M**                      | boolean | 선택 약관 항목 동의 여부 |
 
-### isShowingTermsView
+#### isShowingTermsView
 
 현재 약관 창이 표시되어 있는 상태인지를 알려 줍니다.
 
@@ -383,20 +379,21 @@ Gamebase.Terms.queryTerms(activity, new GamebaseDataCallback<GamebaseQueryTermsR
 + (boolean)Gamebase.Terms.isShowingTermsView();
 ```
 
-## WebView
+### WebView
 
 Gamebase에서는 기본적인 웹뷰를 지원합니다.
 
-
-### Show WebView
+#### Show WebView
 
 웹뷰를 표시합니다.
 
-##### Required 파라미터
+**Required 파라미터**
+
 * activity : 웹뷰가 노출되는 Activity입니다.
 * url : 파라미터로 전송되는 url은 유효한 값이어야 합니다.
 
-##### Optional 파라미터
+**Optional 파라미터**
+
 * configuration : GamebaseWebViewConfiguration으로 웹뷰의 레이아웃을 변경 할 수 있습니다.
 * GamebaseCallback : 웹뷰가 종료될 때 사용자에게 콜백으로 알려 줍니다.
 * schemeList : 사용자가 받고 싶은 커스텀 스킴 목록을 지정합니다.
@@ -419,11 +416,11 @@ Gamebase에서는 기본적인 웹뷰를 지원합니다.
 Gamebase.WebView.showWebView(activity, "https://www.toast.com");
 ```
 
-![Webview Example](https://static.toastoven.net/prod_gamebase/DevelopersGuide/aos-developers-guide-ui-001_1.0.0.png)
+![Webview Example](https://static.toastoven.net/prod\_gamebase/DevelopersGuide/aos-developers-guide-ui-001\_1.0.0.png)
 
-#### Custom WebView
+**Custom WebView**
 
-사용자 지정 웹뷰를 표시합니다. <br/>
+사용자 지정 웹뷰를 표시합니다.\
 GamebaseWebViewConfiguration으로 사용자 지정 웹뷰를 만들 수 있습니다.
 
 ```java
@@ -440,23 +437,23 @@ GamebaseWebViewConfiguration configuration
 GamebaseWebView.showWebView(activity, "https://www.toast.com", configuration);
 ```
 
-#### Custom Scheme
+**Custom Scheme**
 
 Gamebase 웹뷰에서 로딩한 웹 페이지 내에 스킴으로 특정 기능을 사용하거나 웹 페이지 내용을 변경할 수 있습니다.
 
-##### Predefined Custom Scheme
+**Predefined Custom Scheme**
 
 Gamebase에서 지정해 놓은 스킴입니다.
 
-| scheme               | 용도                                  |
-| -------------------- | ------------------------------------- |
-| gamebase://dismiss   | 웹뷰 닫기                          |
-| gamebase://goback    | 웹뷰 뒤로 가기                     |
-| gamebase://getuserid | 현재 로그인중인 있는 사용자의 아이디 표시 |
-| gamebase://showwebview?link={URLEncodedURL} | link 파라메터의 URL 을 웹뷰로 열기.<br>URLEncodedURL : 웹뷰로 열 URL.<br>URL 디코딩 필요. |
-| gamebase://openbrowser?link={URLEncodedURL} | link 파라메터의 URL 을 외부 브라우저로 열기.<br>URLEncodedURL : 외부 브라우저로 열 URL.<br>URL 디코딩 필요. |
+| scheme                                      | 용도                                                                                     |
+| ------------------------------------------- | -------------------------------------------------------------------------------------- |
+| gamebase://dismiss                          | 웹뷰 닫기                                                                                  |
+| gamebase://goback                           | 웹뷰 뒤로 가기                                                                               |
+| gamebase://getuserid                        | 현재 로그인중인 있는 사용자의 아이디 표시                                                                |
+| gamebase://showwebview?link={URLEncodedURL} | <p>link 파라메터의 URL 을 웹뷰로 열기.<br>URLEncodedURL : 웹뷰로 열 URL.<br>URL 디코딩 필요.</p>           |
+| gamebase://openbrowser?link={URLEncodedURL} | <p>link 파라메터의 URL 을 외부 브라우저로 열기.<br>URLEncodedURL : 외부 브라우저로 열 URL.<br>URL 디코딩 필요.</p> |
 
-#### User Custom Scheme
+**User Custom Scheme**
 
 Gamebase에 스킴 이름과 블록을 지정해 원하는 기능을 추가할 수 있습니다.
 
@@ -495,25 +492,26 @@ showWebView(activity, urlString, configuration,
         });
 ```
 
-#### GamebaseWebViewConfiguration
+**GamebaseWebViewConfiguration**
 
-| Method                                   | Values                              | Description    |
-| ---------------------------------------- | ----------------------------------- | -------------- |
-| setTitleText(String title)               | title                               | 웹뷰의 제목         |
-| setScreenOrientation(int orientation)    | ScreenOrientation.PORTRAIT          | 세로 모드          |
-|                                          | ScreenOrientation.LANDSCAPE         | 가로 모드          |
-|                                          | ScreenOrientation.LANDSCAPE_REVERSE | 가로 모드를 180도 회전 |
-| setNavigationBarVisible(boolean enable)  | true or false                       | 내비게이션 바 활성 또는 비활성.<br>**default**: true |
-| setNavigationBarColor(int color)         | Color.argb(a, r, b, b)              | 내비게이션 바 색상     |
-| setNavigationBarHeight(int height)       | height                              | 내비게이션 바 높이     |
-| setBackButtonVisible(boolean visible)    | true or false                       | 뒤로 가기 버튼 활성 또는 비활성.<br>**default**: true |
-| setBackButtonImageResource(int resourceId) | ID of resource                      | 뒤로 가기 버튼 이미지       |
-| setCloseButtonImageResource(int resourceId) | ID of resource                      | 닫기 버튼 이미지      |
-| enableAutoCloseByCustomScheme(boolean enable) | true or false | 커스텀 스킴 동작 시 자동으로 웹뷰 종료.<br>**default**: true |
-| enableFixedFontSize(boolean enable)      | true or false | 시스템 글자 크기를 무시하고 고정된 크기로 웹뷰를 표시.<br>**default**: false |
-| setRenderOutsideSafeArea(boolean render) | true or false | SafeArea를 무시하고 Cutout 영역에도 렌더링.<br>**default**: false |
+| Method                                        | Values                               | Description                                                               |
+| --------------------------------------------- | ------------------------------------ | ------------------------------------------------------------------------- |
+| setTitleText(String title)                    | title                                | 웹뷰의 제목                                                                    |
+| setScreenOrientation(int orientation)         | ScreenOrientation.PORTRAIT           | 세로 모드                                                                     |
+|                                               | ScreenOrientation.LANDSCAPE          | 가로 모드                                                                     |
+|                                               | ScreenOrientation.LANDSCAPE\_REVERSE | 가로 모드를 180도 회전                                                            |
+| setNavigationBarVisible(boolean enable)       | true or false                        | <p>내비게이션 바 활성 또는 비활성.<br><strong>default</strong>: true</p>               |
+| setNavigationBarColor(int color)              | Color.argb(a, r, b, b)               | 내비게이션 바 색상                                                                |
+| setNavigationBarHeight(int height)            | height                               | 내비게이션 바 높이                                                                |
+| setBackButtonVisible(boolean visible)         | true or false                        | <p>뒤로 가기 버튼 활성 또는 비활성.<br><strong>default</strong>: true</p>              |
+| setBackButtonImageResource(int resourceId)    | ID of resource                       | 뒤로 가기 버튼 이미지                                                              |
+| setCloseButtonImageResource(int resourceId)   | ID of resource                       | 닫기 버튼 이미지                                                                 |
+| enableAutoCloseByCustomScheme(boolean enable) | true or false                        | <p>커스텀 스킴 동작 시 자동으로 웹뷰 종료.<br><strong>default</strong>: true</p>          |
+| enableFixedFontSize(boolean enable)           | true or false                        | <p>시스템 글자 크기를 무시하고 고정된 크기로 웹뷰를 표시.<br><strong>default</strong>: false</p> |
+| setRenderOutsideSafeArea(boolean render)      | true or false                        | <p>SafeArea를 무시하고 Cutout 영역에도 렌더링.<br><strong>default</strong>: false</p> |
 
-### Close WebView
+#### Close WebView
+
 다음 API를 통해 현재 보여지는 웹뷰를 닫을 수 있습니다.
 
 **API**
@@ -522,8 +520,7 @@ showWebView(activity, urlString, configuration,
 + (void)Gamebase.WebView.closeWebView(Activity activity);
 ```
 
-
-## Open External Browser
+### Open External Browser
 
 다음 API를 통하여 외부 브라우져를 열 수 있습니다. 파라미터로 전송되는 URL은 유효한 값이어야 합니다.
 
@@ -533,12 +530,12 @@ showWebView(activity, urlString, configuration,
 + (void)Gamebase.WebView.openWebBrowser(Activity activity, String urlString);
 ```
 
+### Alert
 
-## Alert
+시스템 알림을 표시할 수 있습니다.\
 
-시스템 알림을 표시할 수 있습니다.<br/>
 
-### Simple Alert Dialog
+#### Simple Alert Dialog
 
 제목과 메시지만 입력하여 간단하게 알림 대화 상자를 표시할 수 있습니다.
 
@@ -548,10 +545,9 @@ showWebView(activity, urlString, configuration,
 + (void)Gamebase.Util.showAlertDialog(Activity activity, String title, String message);
 ```
 
-![Alert Dialog Example](https://static.toastoven.net/prod_gamebase/DevelopersGuide/aos-developers-guide-ui-002_1.0.0.png)
+![Alert Dialog Example](https://static.toastoven.net/prod\_gamebase/DevelopersGuide/aos-developers-guide-ui-002\_1.0.0.png)
 
-
-### Alert Dialog with Listener
+#### Alert Dialog with Listener
 
 알림 대화 상자를 표시한 후 처리 결과를 콜백받고 싶다면 다음 API를 사용합니다.
 
@@ -565,18 +561,18 @@ showWebView(activity, urlString, configuration,
                             DialogInterface.OnClickListener clickListener);
 ```
 
-## Toast
+### Toast
 
-다음 API를 사용하여 쉽게 [Android 토스트(toast)](https://developer.android.com/guide/topics/ui/notifiers/toasts.html) 메시지를 표시할 수 있습니다.<br/>
+다음 API를 사용하여 쉽게 [Android 토스트(toast)](https://developer.android.com/guide/topics/ui/notifiers/toasts.html) 메시지를 표시할 수 있습니다.\
 메시지를 표시하는 시간 종류 파라미터는 int 형식이며, Android SDK NotificationManagerService 클래스의 정의에 따라 아래 표에 정리한 시간 동안 표시됩니다.
 
-| 시간 종류(int)         | 노출 시간                     |
-| ------------------ | ------------------------- |
-| Toast.LENGTH_SHORT | 2초                        |
-| Toast.LENGTH_LONG  | 3.5초                      |
-| 0                  | Toast.LENGTH_SHORT => 2초  |
-| 1                  | Toast.LENGTH_LONG => 3.5초 |
-| 나머지 모든 값           | Toast.LENGTH_SHORT => 2초  |
+| 시간 종류(int)          | 노출 시간                      |
+| ------------------- | -------------------------- |
+| Toast.LENGTH\_SHORT | 2초                         |
+| Toast.LENGTH\_LONG  | 3.5초                       |
+| 0                   | Toast.LENGTH\_SHORT => 2초  |
+| 1                   | Toast.LENGTH\_LONG => 3.5초 |
+| 나머지 모든 값            | Toast.LENGTH\_SHORT => 2초  |
 
 **API**
 
@@ -586,13 +582,13 @@ showWebView(activity, urlString, configuration,
                         int duration);    // 메시지를 표시하는 시간 종류 (Toast.LENGTH_SHORT or Toast.LENGTH_LONG)
 ```
 
-## Custom Maintenance Page
+### Custom Maintenance Page
 
 점검 상태에서 '자세히 보기'를 클릭하면 표시되는 점검 페이지를 변경할 수 있습니다.
 
 * 사용자 지정 웹 페이지를 점검 페이지로 등록
-    * AndroidManifest.xml에 com.gamebase.maintenance.detail.url를 키 값으로 하는 meta-data를 설정합니다.
-    * android:value 값으로 .html 파일 또는 URL을 입력할 수 있습니다.
+  * AndroidManifest.xml에 com.gamebase.maintenance.detail.url를 키 값으로 하는 meta-data를 설정합니다.
+  * android:value 값으로 .html 파일 또는 URL을 입력할 수 있습니다.
 
 ```xml
 <meta-data
@@ -600,11 +596,11 @@ showWebView(activity, urlString, configuration,
 	android:value="file:///android_asset/html/gamebase-maintenance.html"/>
 ```
 
-## Error Handling
+### Error Handling
 
 | Error              | Error Code | Description                  |
 | ------------------ | ---------- | ---------------------------- |
 | UI\_UNKNOWN\_ERROR | 6999       | 알 수 없는 오류입니다(정의되지 않은 오류입니다). |
 
 * 전체 오류 코드는 다음 문서를 참고하시기 바랍니다.
-    * [오류 코드](./error-code/#client-sdk)
+  * [오류 코드](error-code/#client-sdk)

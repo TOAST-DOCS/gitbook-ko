@@ -1,10 +1,6 @@
 # API 가이드
 
-{% hint style="info" %}
-경고
 
-이것은 테스트 입니다.
-{% endhint %}
 
 ### Compute > Instance > API v2 가이드
 
